@@ -1,0 +1,64 @@
+{
+"manifestVersion": 1,
+  "id": "k8s-endpoint",
+  "version": "0.1.3",
+  "name": "Kubernetes extension",
+  "description": "Kubernetes extension with k8s endpoint. Which enable kubectl command",
+  "publisher": "TsuyoshiUshio",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],  
+    "contributions": [
+    {
+      "id": "service-endpoint",
+      "description": "Service Endpoint type for k8s connection",
+      "type": "ms.vss-endpoint.service-endpoint-type",
+      "targets": [ "ms.vss-endpoint.endpoint-types" ],
+      "properties": {
+        "name": "kubernetes",
+        "displayName": "Kubernetes",
+        "config": {
+          "type": "string",
+          "description": "Paste your config file of k8s master node's config file.",
+          "required": true
+        },
+                "authenticationSchemes": [
+          {
+            "type": "ms.vss-endpoint.endpoint-auth-scheme-none",
+            "inputDescriptors": [
+              {
+                "id": "kubeconfig",
+                "name": "Kubeconfig",
+                "description": "Copy your kubectl config",
+                "inputMode": "textArea",
+                "isConfidential": true,
+                "validation": {
+                  "isRequired": true,
+                  "dataType": "string"
+                }
+              }
+            ]
+          }
+
+        ],
+        "helpMarkDown": "<a href=\"url-to-documentation\" target=\"_blank\"><b>Learn More</b></a>"
+      }
+    },
+    {
+      "id": "build-task",
+      "description": "Task executes kubectl for you.",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "BuildTaskFolder"
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "BuildTaskFolder"
+    }
+  ]
+}
