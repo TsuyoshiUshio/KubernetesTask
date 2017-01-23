@@ -1,0 +1,27 @@
+{
+  "name": "vsts-k8s-task",
+  "version": "1.0.0",
+  "description": "VSTS Kubernetes kubectrl Task\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001btl Task",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "pretest": "for /r ./Tests %f in (*.ts) do tsc %f & for %f in (*.ts) do tsc %f",
+    "test": "for /r ./Tests %f in (*.js) do mocha %f"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://xsc.visualstudio.com/DefaultCollection/ASC/_git/K8s-Extension"
+  },
+  "author": "Tsuyoshi Ushio",
+  "license": "MIT",
+  "dependencies": {
+    "path": "^0.12.7",
+    "vsts-task-lib": "^1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
