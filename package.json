@@ -8,7 +8,8 @@
   },
   "scripts": {
     "pretest": "for /r ./Tests %f in (*.ts) do tsc %f & for %f in (*.ts) do tsc %f",
-    "test": "for /r ./Tests %f in (*.js) do mocha %f"
+    "test": "mocha ./Tests/L0.js",
+    "update": "copy kubectl.js BuiltTaskFolder"
   },
   "repository": {
     "type": "git",

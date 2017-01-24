@@ -7,11 +7,11 @@ import path = require('path');
 let taskPath = path.join(__dirname, '..', 'kubectl.js');
 let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
-tr.setInput('yamlfile', '/path/to/some.yml');
-tr.setInput('kubectlBinary', '/path/to/kubectl');
+tr.setInput('yamlfile', './Tests/my-nginx.yml');
+tr.setInput('kubectlBinary', './Tests/kubectl');
 tr.setInput('k8sService', 'k8sendpoint');
 
-process.env['ENDPOINT_AUTH_K8SENDPOINT_KUBECONFIG'] = `
+process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
 ---
 apiVersion: v1
@@ -37,10 +37,17 @@ users:
 `;
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
+    "which": {
+        "echo":  "/usr/bin/echo"
+    },
+    "cwd": process.cwd(), 
    "exec": {
-       "/path/to/kubectl apply -f /path/to/some.yml": {
+       "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig config": {
           "code": 0,
           "stdout": "deployment \"nginx-deployment\" created"  
        }
    } 
 }
+tr.setAnswers(a);
+
+tr.run();

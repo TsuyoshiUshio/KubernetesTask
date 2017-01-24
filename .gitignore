@@ -1,3 +1,6 @@
 *.vsix
 *.js
 node_modules
+.taskkey
+.vscode
+config
