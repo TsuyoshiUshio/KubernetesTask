@@ -13,6 +13,7 @@ tfx extension create --manifest-globs vss-extension.json
 
 Go to the Market place [Market Place Manage](https://marketplace.visualstudio.com/manage)
 Then upload and share with your VSTS account.
+[Tsuyoshi Ushio's publisher site](https://marketplace.visualstudio.com/manage/publishers/tsuyoshiushio)
 
 # 3 Current load map
 
