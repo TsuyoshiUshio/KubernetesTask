@@ -1,6 +1,7 @@
 *.vsix
 *.js
 node_modules
+BuildTaskFolder/node_modules
 .taskkey
 .vscode
 config

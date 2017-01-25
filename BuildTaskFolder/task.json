@@ -5,7 +5,7 @@
   "description": "Kubernetes Task. You can use kubectl apply by this command.",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "Kubernetes task",
-  "category": "Utility",
+  "category": "Deploy",
   "visibility": [
     "Build",
     "Release"
@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "0"
+    "Patch": "13"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "k8s $(message)",

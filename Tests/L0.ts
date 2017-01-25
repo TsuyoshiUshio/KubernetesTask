@@ -26,7 +26,7 @@ describe('Kubernetes Task', function() {
         tr.run();
         expect(tr.succeeded).to.equal(true);
         
-        fs.access(process.cwd()  + '\\Tests\\config', function (err) {
+        fs.access(path.join(process.cwd(),path.join('Tests', 'config')), function (err) {
             expect(err).to.be.false
         });
 
