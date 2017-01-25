@@ -9,7 +9,7 @@
   "scripts": {
     "pretest": "for /r ./Tests %f in (*.ts) do tsc %f & for %f in (*.ts) do tsc %f",
     "test": "mocha ./Tests/L0.js",
-    "deploy": "copy kubectl.js BuildTaskFolder & copy package.json BuildTaskFolder"
+    "deploy": "copy kubectl.js BuildTaskFolder & copy package.json BuildTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules BuildTaskFolder\\node_modules "
   },
   "repository": {
     "type": "git",
