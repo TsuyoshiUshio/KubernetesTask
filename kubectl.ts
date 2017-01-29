@@ -27,9 +27,9 @@ async function run() {
             tl.debug('It\'s saved!');
         });
 
-        tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig config")
+        tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig ./config")
 
-        var kubectl: ToolRunner = tl.tool(kubectlbinary + ' apply -f ' + yamlfile + ' --kubeconfig config');
+        var kubectl: ToolRunner = tl.tool(kubectlbinary + ' apply -f ' + yamlfile + ' --kubeconfig ./config');
         let result =  kubectl.execSync();
         tl.debug("STDOUT: " + result.stdout);
         tl.debug("STDERR: " + result.stdout);

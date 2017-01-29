@@ -40,7 +40,7 @@ describe('Kubernetes Task', function() {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         console.log(tr.cmdlines);
-        expect(tr.ran("\"./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig config\"")).to.be.true;
+        expect(tr.ran("\"./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./config\"")).to.be.true;
         done();
     });
 

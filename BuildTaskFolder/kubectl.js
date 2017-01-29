@@ -11,11 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const tl = require("vsts-task-lib");
 const path = require("path");
 const fs = require("fs");
-const toolrunner_1 = require("vsts-task-lib/toolrunner");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            var echo = new toolrunner_1.ToolRunner(tl.which('echo', true));
             var endpoint = tl.getInput('k8sService');
             var kubeconfig = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
             var yamlfile = tl.getInput('yamlfile');
@@ -28,8 +26,8 @@ function run() {
                     throw err;
                 tl.debug('It\'s saved!');
             });
-            tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig config");
-            var kubectl = tl.tool(kubectlbinary + ' apply -f ' + yamlfile + ' --kubeconfig config');
+            tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig ./config");
+            var kubectl = tl.tool(kubectlbinary + ' apply -f ' + yamlfile + ' --kubeconfig ./config');
             let result = kubectl.execSync();
             tl.debug("STDOUT: " + result.stdout);
             tl.debug("STDERR: " + result.stdout);
