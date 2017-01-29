@@ -2,6 +2,7 @@
 /// <reference path="../typings/globals/mocha/index.d.ts" />
 /// <reference path="../typings/globals/node/index.d.ts" />
 
+
 import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
 
@@ -22,6 +23,7 @@ describe('Kubernetes Task', function() {
 
     it("configure kubectl", (done: MochaDone) => {
         let tp = path.join(__dirname, 'test-config.js');
+        console.log('tp: ' + tp);
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         expect(tr.succeeded).to.equal(true);

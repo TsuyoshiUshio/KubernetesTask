@@ -7,9 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "pretest": "for /r ./Tests %f in (*.ts) do tsc %f & for %f in (*.ts) do tsc %f",
+    "pretest": "tsc -p .",
     "test": "mocha ./Tests/L0.js",
-    "deploy": "copy kubectl.js BuildTaskFolder & copy package.json BuildTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules BuildTaskFolder\\node_modules "
+    "deploy": "copy kubectl.js BuildTaskFolder & copy package.json BuildTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules BuildTaskFolder\\node_modules ",
+    "build": "tfx extension create --manifest-globs vss-extension.json"
   },
   "repository": {
     "type": "git",
