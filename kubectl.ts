@@ -10,8 +10,6 @@ import { ToolRunner } from 'vsts-task-lib/toolrunner';
 async function run() {
     try {
 
-        var echo = new ToolRunner(tl.which('echo', true));
-
         var endpoint: string = tl.getInput('k8sService');
         var kubeconfig: string = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
 
