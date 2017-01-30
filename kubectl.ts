@@ -42,17 +42,4 @@ async function run() {
 
 run();
 
-// will error and fail task if it doesn't exist
-// tl.checkPath(cwd, 'cwd');
-// tl.cd(cwd);
 
-// echo.exec({ failOnStdErr: false})
-// .then(function(code) {
-//    tl.debug('taskRunner success');
-//    tl.exit(code);
-// })
-// .fail(function(err) {
-//     console.error(err.message);
-//    tl.debug('taskRunner fail');
-//    tl.exit(1);
-// })
