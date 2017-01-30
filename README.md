@@ -4,6 +4,8 @@ Kubernetes extension for VSTS (Early Alpha)
 Enable Kubernetes extension for VSTS. Kubernetes endpoint for kubectl config and kubectl apply build task.
 Mainly aim for using Linux Hosted Agent(preview).
 
+![Header](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/Header.png)
+
 # 1. Build the extension
 
 I tested via windows environment.
