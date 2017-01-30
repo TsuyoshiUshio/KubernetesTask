@@ -7,10 +7,10 @@ import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
 import * as tl from 'vsts-task-lib';
 
-console.log("step1");
-var expect = require('chai').expect;
-var fs = require('fs');
-console.log("step2");
+
+let expect = require('chai').expect;
+let fs = require('fs');
+
 let parent_dir = path.normalize(path.join(__dirname, '..'));
 tl.debug("parent_dir: " + parent_dir);
 let config_file_path = path.join(parent_dir, "config");
@@ -40,7 +40,7 @@ describe('Kubernetes Task', function () {
 
     it("configure kubectl", (done: MochaDone) => {
         let tp = path.join(__dirname, 'test-config.js');
-        console.log('tp: ' + tp);
+        tl.debug('tp: ' + tp);
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         expect(tr.succeeded).to.equal(true);
@@ -53,7 +53,7 @@ describe('Kubernetes Task', function () {
         let tp = path.join(__dirname, 'test-config.js');
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
-        console.log(tr.cmdlines);
+        tl.debug(tr.cmdlines);
         expect(tr.ran("./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./config")).to.be.true;
         done();
     });
