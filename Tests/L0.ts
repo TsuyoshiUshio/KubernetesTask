@@ -5,15 +5,32 @@
 
 import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
+import * as tl from 'vsts-task-lib';
 
 console.log("step1");
 var expect = require('chai').expect;
 var fs = require('fs');
 console.log("step2");
+let parent_dir = path.normalize(path.join(__dirname, '..'));
+tl.debug("parent_dir: " + parent_dir);
+let config_file_path = path.join(parent_dir, "config");
 
-describe('Kubernetes Task', function() {
+function isExistFile(file) {
+    try {
+        fs.statSync(file);
+        return true;
+    } catch (err) {
+        if (err.code == 'ENOENT') return false;
+    }
+}
+
+describe('Kubernetes Task', function () {
     before(() => {
 
+        fs.unlink(config_file_path, function (err) {
+            if (err) tl.debug("config not found (It's OK.)");
+            tl.debug("Sucessfully deleted config");
+        });
     });
 
     after(() => {
@@ -27,11 +44,8 @@ describe('Kubernetes Task', function() {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         expect(tr.succeeded).to.equal(true);
-        
-        fs.access(path.join(process.cwd(),path.join('Tests', 'config')), function (err) {
-            expect(err).to.be.false
-        });
 
+        expect(isExistFile(config_file_path)).to.be.true;
         done();
     });
 

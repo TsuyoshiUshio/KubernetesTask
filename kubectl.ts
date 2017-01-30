@@ -20,8 +20,9 @@ async function run() {
         var kubectlbinary: string = tl.getInput('kubectlBinary');
         
         tl.checkPath(kubectlbinary, 'kubectlBinary');
-        var configfile: string = path.join(tl.cwd() + "config");
-
+        var configfile: string = path.join(tl.cwd(), "config");
+        tl.debug("cwd(): " + tl.cwd());
+        tl.debug("configfile: " + configfile);
         await fs.writeFile(configfile, kubeconfig, (err) => {
             if (err) throw err;
             tl.debug('It\'s saved!');

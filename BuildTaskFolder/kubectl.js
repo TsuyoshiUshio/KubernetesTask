@@ -20,7 +20,9 @@ function run() {
             tl.checkPath(yamlfile, 'yamlfile');
             var kubectlbinary = tl.getInput('kubectlBinary');
             tl.checkPath(kubectlbinary, 'kubectlBinary');
-            var configfile = path.join(tl.cwd() + "config");
+            var configfile = path.join(tl.cwd(), "config");
+            tl.debug("cwd(): " + tl.cwd());
+            tl.debug("configfile: " + configfile);
             yield fs.writeFile(configfile, kubeconfig, (err) => {
                 if (err)
                     throw err;
