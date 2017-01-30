@@ -41,9 +41,13 @@ However, you can see the image of the endpoint and build task.
 
 Choose Kubernetes endpoint.
 
+![Kubernetes Endpoint](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/endpoing01.png)
+
 ### Set your endpoint 
 
 Kubernetes Connection pops up. Then fill the box.
+
+![Kubernetes Connection](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/endpoint02.png)
 
 * Connection name: Endpoint name (Anything is OK)
 * Server URL : K8s Cluster URL for memo (Not used for the task until now)
@@ -57,13 +61,18 @@ Then copy the file content and paste on kubeconfig column.
 
 Link your repo which has kubecntl command. 
 
+![Link Artifact](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/linkaritifact.png)
+
 Please `chmod +x kubectl` before adding kubectl to your repo.
 
+![VSTS Private Repository](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/repo01.png)
 
 ## 4.2. Setup your k8s task
 
 Then you can use the endpoint, specify the kubectl command and YAML file 
 for deployment. Internally, it calls `kubectl apply` command. 
+
+![K8s Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/pipeline01.png)
 
 If you want to change the YAML file dynamically, you can use [Replace tokens](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens) on the VSTS Marketplace.
 
