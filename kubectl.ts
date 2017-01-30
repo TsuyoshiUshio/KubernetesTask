@@ -10,27 +10,24 @@ import { ToolRunner } from 'vsts-task-lib/toolrunner';
 async function run() {
     try {
 
-        var endpoint: string = tl.getInput('k8sService');
-        var kubeconfig: string = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
+        let endpoint: string = tl.getInput('k8sService');
+        let kubeconfig: string = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
 
-        var yamlfile: string = tl.getInput('yamlfile');
+        let yamlfile: string = tl.getInput('yamlfile');
         tl.checkPath(yamlfile, 'yamlfile');
 
 
-        var kubectlbinary: string = tl.getInput('kubectlBinary');
+        let kubectlbinary: string = tl.getInput('kubectlBinary');
         
         tl.checkPath(kubectlbinary, 'kubectlBinary');
-        var configfile: string = path.join(tl.cwd(), "config");
+        let configfile: string = path.join(tl.cwd(), "config");
         tl.debug("cwd(): " + tl.cwd());
         tl.debug("configfile: " + configfile);
-        await fs.writeFile(configfile, kubeconfig, (err) => {
-            if (err) throw err;
-            tl.debug('It\'s saved!');
-        });
-
+        fs.writeFileSync(configfile, kubeconfig);
+        
         tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig ./config")
 
-        var kubectl: ToolRunner = tl.tool(kubectlbinary + ' apply -f ' + yamlfile + ' --kubeconfig ./config');
+        let kubectl: ToolRunner = tl.tool(kubectlbinary).arg('apply').arg('-f').arg(yamlfile).arg('--kubeconfig').arg('./config');
         let result =  kubectl.execSync();
         tl.debug("STDOUT: " + result.stdout);
         tl.debug("STDERR: " + result.stdout);

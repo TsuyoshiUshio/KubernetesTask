@@ -14,22 +14,18 @@ const fs = require("fs");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            var endpoint = tl.getInput('k8sService');
-            var kubeconfig = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
-            var yamlfile = tl.getInput('yamlfile');
+            let endpoint = tl.getInput('k8sService');
+            let kubeconfig = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
+            let yamlfile = tl.getInput('yamlfile');
             tl.checkPath(yamlfile, 'yamlfile');
-            var kubectlbinary = tl.getInput('kubectlBinary');
+            let kubectlbinary = tl.getInput('kubectlBinary');
             tl.checkPath(kubectlbinary, 'kubectlBinary');
-            var configfile = path.join(tl.cwd(), "config");
+            let configfile = path.join(tl.cwd(), "config");
             tl.debug("cwd(): " + tl.cwd());
             tl.debug("configfile: " + configfile);
-            yield fs.writeFile(configfile, kubeconfig, (err) => {
-                if (err)
-                    throw err;
-                tl.debug('It\'s saved!');
-            });
+            fs.writeFileSync(configfile, kubeconfig);
             tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig ./config");
-            var kubectl = tl.tool(kubectlbinary + ' apply -f ' + yamlfile + ' --kubeconfig ./config');
+            let kubectl = tl.tool(kubectlbinary).arg('apply').arg('-f').arg(yamlfile).arg('--kubeconfig').arg('./config');
             let result = kubectl.execSync();
             tl.debug("STDOUT: " + result.stdout);
             tl.debug("STDERR: " + result.stdout);
