@@ -1,3 +1,3 @@
-IF EXIST BuildTaskFolder\node_modules ( 
-RD /s /q BuildTaskFolder\node_modules 
+IF EXIST ApplyTaskFolder\node_modules ( 
+RD /s /q ApplyTaskFolder\node_modules 
 )
