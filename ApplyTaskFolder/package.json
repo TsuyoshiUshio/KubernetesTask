@@ -9,7 +9,7 @@
   "scripts": {
     "pretest": "tsc -p .",
     "test": "mocha ./Tests/L0.js",
-    "deploy": "copy kubectl.js ApplyTaskFolder & copy package.json ApplyTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules ApplyTaskFolder\\node_modules ",
+    "deploy": "copy apply.js ApplyTaskFolder & copy package.json ApplyTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules ApplyTaskFolder\\node_modules ",
     "build": "tfx extension create --manifest-globs vss-extension.json"
   },
   "repository": {

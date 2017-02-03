@@ -45,7 +45,7 @@
   ],
   "execution": {
     "Node": {
-      "target": "kubectl.js",
+      "target": "apply.js",
       "argumentFormat": ""
     }
   }

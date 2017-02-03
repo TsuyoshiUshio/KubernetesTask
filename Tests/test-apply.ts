@@ -4,7 +4,7 @@ import ma = require('vsts-task-lib/mock-answer');
 import tmrm = require('vsts-task-lib/mock-run');
 import path = require('path');
 
-let taskPath = path.join(__dirname, '..', 'kubectl.js');
+let taskPath = path.join(__dirname, '..', 'apply.js');
 let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
 tr.setInput('yamlfile', './Tests/my-nginx.yml');

@@ -39,7 +39,7 @@ describe('Kubernetes Task', function () {
 
 
     it("configure kubectl", (done: MochaDone) => {
-        let tp = path.join(__dirname, 'test-apply.js');
+        let tp = path.join(__dirname, 'test-general.js');
         tl.debug('tp: ' + tp);
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
@@ -50,7 +50,7 @@ describe('Kubernetes Task', function () {
     });
 
     it("execute kubectl apply", (done: MochaDone) => {
-        let tp = path.join(__dirname, 'test-apply.js');
+        let tp = path.join(__dirname, 'test-general.js');
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         tl.debug(tr.cmdlines);
