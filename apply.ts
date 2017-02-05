@@ -14,7 +14,9 @@ async function run() {
         let kubeconfig: string = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
 
         let yamlfile: string = tl.getInput('yamlfile');
+        tl.debug("yamlfile --: " + yamlfile);
         tl.checkPath(yamlfile, 'yamlfile');
+        tl.debug("****");
 
 
         let kubectlbinary: string = tl.getInput('kubectlBinary');
@@ -23,13 +25,26 @@ async function run() {
         let configfile: string = path.join(tl.cwd(), "config");
         tl.debug("cwd(): " + tl.cwd());
         tl.debug("configfile: " + configfile);
-        await fs.writeFile(configfile, kubeconfig);
+        fs.writeFileSync(configfile, kubeconfig);
         
-        tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig ./config")
+        tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig " + configfile)
 
         let kubectl: ToolRunner = tl.tool(kubectlbinary).arg('apply').arg('-f').arg(yamlfile).arg('--kubeconfig').arg('./config');
-        tl.debug("BBBB1");
-        kubectl.exec();
+        
+        (function() {
+            let childProcess = require("child_process");
+            let oldSpawn = childProcess.spawn;
+            function mySpawn() {
+                console.log('spawn called');
+                console.log(arguments);
+                let result = oldSpawn.apply(this, arguments);
+                return result;
+            }
+        childProcess.spawn = mySpawn;
+        })();
+
+
+        kubectl.execSync();
 
         tl.setResult(tl.TaskResult.Succeeded, "kubectl works.")
         return;

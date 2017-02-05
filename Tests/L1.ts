@@ -44,7 +44,6 @@ describe('Kubernetes Task', function () {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         expect(tr.succeeded).to.equal(true);
-
         expect(isExistFile(config_file_path)).to.be.true;
         done();
     });
