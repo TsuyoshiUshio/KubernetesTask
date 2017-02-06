@@ -12,24 +12,17 @@ You need typings / tsc / tfx commands.
 
 Please refer these to install.
 
+```
+npm install
+npm install typings@2.1.0  --global-style
+npm install typescript@2.1.5 --global-style
+npm install tfx-cli@v0.3.45  --global-style
+```
+
+FYI:
 [typings](https://www.npmjs.com/package/typings)
 [tfx-cli](https://www.npmjs.com/package/tfx-cli)
 [typescript](https://www.typescriptlang.org/docs/tutorial.html)
-
-These are the version which I installed. 
-
-```
-$ tsc --version
-Version 2.1.5
-
-$ typings --version
-2.1.0
-
-$ tfx --version
-TFS Cross Platform Command Line Interface v0.3.45
-
-```
-
 
 # 2. Build the extension
 
