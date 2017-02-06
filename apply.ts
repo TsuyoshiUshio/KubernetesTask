@@ -1,7 +1,7 @@
 /// <reference path="typings/globals/node/index.d.ts" />
 "use strict"
 
-import tl = require('vsts-task-lib');
+import tl = require('vsts-task-lib/task');
 import path = require('path');
 
 import fs = require('fs');
@@ -30,23 +30,10 @@ async function run() {
         tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig " + configfile)
 
         let kubectl: ToolRunner = tl.tool(kubectlbinary).arg('apply').arg('-f').arg(yamlfile).arg('--kubeconfig').arg('./config');
-        
-        (function() {
-            let childProcess = require("child_process");
-            let oldSpawn = childProcess.spawn;
-            function mySpawn() {
-                console.log('spawn called');
-                console.log(arguments);
-                let result = oldSpawn.apply(this, arguments);
-                return result;
-            }
-        childProcess.spawn = mySpawn;
-        })();
 
+        await kubectl.exec();
 
-        kubectl.execSync();
-
-        tl.setResult(tl.TaskResult.Succeeded, "kubectl works.")
+        tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
         return;
 
     } catch (err) {
