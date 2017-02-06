@@ -40,9 +40,15 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "which": {
         "echo":  "/usr/bin/echo"
     },
-    "cwd": process.cwd(), 
-   "exec": {
-       "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig config": {
+    "checkPath": {
+        "./Tests/my-nginx.yml": true,
+        "./Tests/kubectl": true
+    },
+    "cwd": {
+        "cwd": process.cwd(),
+    },
+    "exec": {
+       "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./config": {
           "code": 0,
           "stdout": "deployment \"nginx-deployment\" created"  
        }
