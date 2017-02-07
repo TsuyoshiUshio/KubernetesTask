@@ -3,42 +3,18 @@
 
 import tl = require('vsts-task-lib/task');
 import path = require('path');
+import { KubectlCommand } from './kubectl.js';
 
-import fs = require('fs');
-import { ToolRunner } from 'vsts-task-lib/toolrunner';
+let subCommand: string = tl.getInput('subCommand');
 
-async function run() {
-    try {
+let multilineArgs: string = tl.getInput('arguments');
 
-        let endpoint: string = tl.getInput('k8sService');
-        let kubeconfig: string = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
+let kubectl: KubectlCommand = new KubectlCommand();
+kubectl.append(subCommand);
 
-        let kubectlbinary: string = tl.getInput('kubectlBinary');
-        tl.checkPath(kubectlbinary, 'kubectlBinary');
+multilineArgs.split(/\s+/).map(function (x) { kubectl.append(x) });
 
-        let configfile: string = path.join(tl.cwd(), "config");
-        tl.debug("cwd(): " + tl.cwd());
-        tl.debug("configfile: " + configfile);
-        await fs.writeFile(configfile, kubeconfig);
+kubectl.exec();
 
-        let subCommand: string = tl.getInput('subCommand');
-
-        let multilineArgs: string = tl.getInput('arguments');
-
-        let kubectl: ToolRunner = tl.tool(kubectlbinary).arg(subCommand);
-        multilineArgs.split(/\s+/).map(function(x) {kubectl.arg(x)} );
-        kubectl.arg('--kubeconfig').arg('./config');
-
-        await kubectl.exec();
-
-        tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
-        return;
-
-    } catch (err) {
-        tl.setResult(tl.TaskResult.Failed, err);
-    }
-}
-
-run();
 
 

@@ -1,5 +1,7 @@
 copy apply.js ApplyTaskFolder
 copy general.js GeneralTaskFolder
+copy kubectl.js ApplyTaskFolder
+copy kubectl.js GeneralTaskFolder
 copy package.json ApplyTaskFolder 
 copy package.json GeneralTaskFolder
 
