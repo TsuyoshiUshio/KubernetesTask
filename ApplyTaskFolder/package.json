@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pretest": "tsc -p .",
-    "test": "mocha ./Tests/L0.js",
+    "test": "mocha ./Tests/L0.js ./Tests/L1.js",
     "deploy": "copy apply.js ApplyTaskFolder & copy package.json ApplyTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules ApplyTaskFolder\\node_modules ",
     "build": "tfx extension create --manifest-globs vss-extension.json"
   },

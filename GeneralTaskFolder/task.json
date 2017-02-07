@@ -20,29 +20,45 @@
   "instanceNameFormat": "kubectlgeneral $(message)",
   "inputs": [
     {
-      "name": "cwd",
-      "type": "filePath",
-      "label": "Working Directory",
-      "defaultValue": "",
-      "required": false,
-      "helpMarkDown": "Current working directory when kubectlgeneral is run."
+      "name": "k8sService",
+      "type": "connectedService:kubernetes",
+      "label": "k8s end point",
+      "required": true,
+      "helpMarkDown": "Select Kubernetes endo point to use."
     },
     {
-      "name": "msg",
-      "type": "string",
-      "label": "Message",
-      "defaultValue": "Hello World",
+      "name": "kubectlBinary",
+      "type": "filePath",
+      "label": "kubectl binary",
+      "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Message to echo out"
+      "helpMarkDown": "Select your kubectl according to your version"
+    },
+    {
+      "name": "subCommand",
+      "type": "string",
+      "label": "Sub Command",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "kubectl sub command. get, explain, apply... etc"
+    },
+    {
+      "name": "arguments",
+      "type": "multiline",
+      "properties": {
+        "resizable": "true",
+        "rows": "2"
+      },
+      "label": "Argument",
+      "required": false,
+      "helpMarkDown": "kubectl arguments. Specify  Resource Types or Options with space or a new line"
     }
   ],
+
   "execution": {
     "Node": {
-      "target": "sample.js",
+      "target": "general.js",
       "argumentFormat": ""
-    },
-    "PowerShell3": {
-      "target": "sample.ps1"
     }
   }
 }

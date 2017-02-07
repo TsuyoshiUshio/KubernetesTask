@@ -50,18 +50,30 @@
       }
     },
     {
-      "id": "build-task",
-      "description": "Task executes kubectl for you.",
+      "id": "apply-task",
+      "description": "Task executes the kubectl apply for you.",
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
       "properties": {
         "name": "ApplyTaskFolder"
+      }
+    },
+    {
+      "id": "general-task",
+      "description": "Task executes a general kubectl command for you.",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "GeneralTaskFolder"
       }
     }
   ],
   "files": [
     {
       "path": "ApplyTaskFolder"
+    },
+    {
+      "path": "GeneralTaskFolder"
     }
   ]
 }

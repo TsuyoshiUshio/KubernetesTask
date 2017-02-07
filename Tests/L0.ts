@@ -5,7 +5,7 @@
 
 import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
-import * as tl from 'vsts-task-lib';
+import * as tl from 'vsts-task-lib/task';
 
 
 let expect = require('chai').expect;
@@ -24,7 +24,7 @@ function isExistFile(file) {
     }
 }
 
-describe('Kubernetes Task', function () {
+describe('Kubectl apply Task', function () {
     before(() => {
 
         fs.unlink(config_file_path, function (err) {
