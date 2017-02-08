@@ -1,7 +1,7 @@
 {
 "manifestVersion": 1,
   "id": "k8s-endpoint",
-  "version": "0.1.17",
+  "version": "0.1.24",
   "name": "Kubernetes extension",
   "description": "Kubernetes extension with k8s endpoint. Which enable kubectl command",
   "publisher": "TsuyoshiUshio",
@@ -50,18 +50,30 @@
       }
     },
     {
-      "id": "build-task",
-      "description": "Task executes kubectl for you.",
+      "id": "apply-task",
+      "description": "Task executes the kubectl apply for you.",
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
       "properties": {
-        "name": "BuildTaskFolder"
+        "name": "tasks/apply"
+      }
+    },
+    {
+      "id": "general-task",
+      "description": "Task executes a general kubectl command for you.",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/general"
       }
     }
   ],
   "files": [
     {
-      "path": "BuildTaskFolder"
+      "path": "tasks/apply"
+    },
+    {
+      "path": "tasks/general"
     }
   ]
 }

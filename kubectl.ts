@@ -7,37 +7,40 @@ import path = require('path');
 import fs = require('fs');
 import { ToolRunner } from 'vsts-task-lib/toolrunner';
 
-async function run() {
-    try {
+export class KubectlCommand {
+    endpoint: string;
+    kubeconfig: string;
+    kubectlbinary: string;
+    configfile: string;
+    kubectl: ToolRunner;
 
-        let endpoint: string = tl.getInput('k8sService');
-        let kubeconfig: string = tl.getEndpointAuthorizationParameter(endpoint, 'kubeconfig', true);
+    constructor() {
+        this.endpoint = tl.getInput('k8sService');
+        this.kubeconfig = tl.getEndpointAuthorizationParameter(this.endpoint, 'kubeconfig', true);
+        this.kubectlbinary = tl.getInput('kubectlBinary');
+        this.configfile = path.join(tl.cwd(), "config");
+        this.kubectl = tl.tool(this.kubectlbinary);
+    }
+    append(arg) {
+        this.kubectl.arg(arg);
+    }
+    exec() {
+        this.execCommand();
+    }
+    async execCommand() {
+        try {
+            tl.checkPath(this.kubectlbinary, 'kubectlBinary');
+            tl.debug("cwd(): " + tl.cwd());
+            tl.debug("configfile: " + this.configfile);
+            await fs.writeFile(this.configfile, this.kubeconfig);
+            this.kubectl.arg('--kubeconfig').arg('./config');
 
-        let yamlfile: string = tl.getInput('yamlfile');
-        tl.checkPath(yamlfile, 'yamlfile');
+            await this.kubectl.exec();
 
-
-        let kubectlbinary: string = tl.getInput('kubectlBinary');
-        
-        tl.checkPath(kubectlbinary, 'kubectlBinary');
-        let configfile: string = path.join(tl.cwd(), "config");
-        tl.debug("cwd(): " + tl.cwd());
-        tl.debug("configfile: " + configfile);
-        fs.writeFileSync(configfile, kubeconfig);
-        
-        tl.debug("DEBUG:  " + kubectlbinary + " apply -f " + yamlfile + " --kubeconfig ./config")
-
-        let kubectl: ToolRunner = tl.tool(kubectlbinary).arg('apply').arg('-f').arg(yamlfile).arg('--kubeconfig').arg('./config');
-        await kubectl.exec();
-
-        tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
-        return;
-
-    } catch (err) {
-        tl.setResult(tl.TaskResult.Failed, err);
+            tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
+            return;
+        } catch (err) {
+            tl.setResult(tl.TaskResult.Failed, err);
+        }
     }
 }
-
-run();
-
-

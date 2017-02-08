@@ -8,8 +8,8 @@
   },
   "scripts": {
     "pretest": "tsc -p .",
-    "test": "mocha ./Tests/L0.js",
-    "deploy": "copy kubectl.js BuildTaskFolder & copy package.json BuildTaskFolder & cleanup.bat & xcopy /Y /I /S node_modules BuildTaskFolder\\node_modules ",
+    "test": "mocha ./Tests/L0.js ./Tests/L1.js",
+    "deploy": "deploy.bat",
     "build": "tfx extension create --manifest-globs vss-extension.json"
   },
   "repository": {
