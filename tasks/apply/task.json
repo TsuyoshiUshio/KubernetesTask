@@ -1,7 +1,7 @@
 {
-  "id": "dac0ba20-dfe4-11e6-ad9e-bf42ff6cb629",
-  "name": "k8s",
-  "friendlyName": "Kubernetes Task",
+  "id": "9bf07640-ed9b-11e6-8ac1-6b0636b1490f",
+  "name": "kubectlapply",
+  "friendlyName": "Kubernetes Apply Task",
   "description": "Kubernetes Task. You can use kubectl apply by this command.",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "Kubernetes task",
@@ -14,10 +14,10 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "17"
+    "Patch": "24"
   },
   "minimumAgentVersion": "1.95.0",
-  "instanceNameFormat": "k8s $(message)",
+  "instanceNameFormat": "kubectlapply $(message)",
   "inputs": [
     {
       "name": "k8sService",
