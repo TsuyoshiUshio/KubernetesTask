@@ -87,14 +87,21 @@ Please `chmod +x kubectl` before adding kubectl to your repo.
 
 ![VSTS Private Repository](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/repo01.png)
 
-## 5.3. Setup your k8s task
+## 5.3. Setup your kubectlapply task
 
 Then you can use the endpoint, specify the kubectl command and YAML file 
 for deployment. Internally, it calls `kubectl apply` command. 
 
-![K8s Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/pipeline01.png)
+![kubectlapply Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/pipeline01.png)
 
 If you want to change the YAML file dynamically, you can use [Replace tokens](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens) on the VSTS Marketplace.
+
+## 5.4. Setup your kubectlgeneral task
+
+You can use every kubectl command you want. Use kubectlgeneral task.
+You can specify a lot of arguments separated with space or new line. 
+
+![kubectlgeneral Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/general.png)
 
 
 # 6 Resources
