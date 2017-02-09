@@ -10,11 +10,13 @@ let subCommand: string = tl.getInput('subCommand');
 let multilineArgs: string = tl.getInput('arguments');
 
 let kubectl: KubectlCommand = new KubectlCommand();
-kubectl.append(subCommand);
 
-multilineArgs.split(/\s+/).map(function (x) { kubectl.append(x) });
+kubectl.init().then(
+    function() {
+        kubectl.append(subCommand);
 
-kubectl.exec();
+        multilineArgs.split(/\s+/).map(function (x) { kubectl.append(x) });
 
-
-
+        kubectl.exec();
+    }
+);

@@ -1,7 +1,7 @@
 {
-  "id": "9bf07640-ed9b-11e6-8ac1-6b0636b1490f",
+  "id": "9bf07640-ed9b-aaaa-8ac1-6b0636b1490f",
   "name": "kubectlapply",
-  "friendlyName": "Kubernetes Apply Task",
+  "friendlyName": "Kubernetes Ostrich Apply Task 45",
   "description": "Kubernetes Task. You can use kubectl apply by this command.",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "Kubernetes task",
@@ -38,7 +38,7 @@
       "name": "kubectlBinary",
       "type": "filePath",
       "label": "kubectl binary",
-      "defaultValue": "",
+      "defaultValue": "./kubectl",
       "required": false,
       "helpMarkDown": "Select your kubectl according to your version"
     }
