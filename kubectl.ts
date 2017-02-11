@@ -14,9 +14,21 @@ export class KubectlCommand {
     configfile: string;
     kubectl: ToolRunner;
 
+    isBase64(contents) {
+    let base64Regx = /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/
+    return base64Regx.test(contents);
+    }
+
+    decodeBase64(contents) {
+        return new Buffer(contents, 'base64').toString();
+    }
+
     constructor() {
         this.endpoint = tl.getInput('k8sService');
         this.kubeconfig = tl.getEndpointAuthorizationParameter(this.endpoint, 'kubeconfig', true);
+        if (this.isBase64(this.kubeconfig)) {
+            this.kubeconfig = this.decodeBase64(this.kubeconfig);
+        }   
         this.kubectlbinary = tl.getInput('kubectlBinary');
         this.configfile = path.join(tl.cwd(), "config");
         this.kubectl = tl.tool(this.kubectlbinary);
