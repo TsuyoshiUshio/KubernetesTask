@@ -77,6 +77,25 @@ You can get config file from your k8s master node `.kube/config`.
 See [Microsoft Azure Container Service Engine - Kubernetes Walkthrough](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough)
 Then copy the file content and paste on kubeconfig column.
 
+**NOTE**  
+
+If you copy config file into Kubeconfig, the build log of VSTS might show you the contents.
+This happens when you copy multiline. 
+Kubernetes tasks support base64 encoding for Kubeconfig column. If you want to avoid this problem,
+you can convert your config file into base64 string. You can find the tool for converting config file. `tools/convert.ts`
+
+**Usage**
+
+your config file should be `LF` not `CRLF` if you want to use on Linux hosted build.
+
+```
+tsc -p .
+node tools/convert.js {filename}
+```
+
+You can find {filename}_new file which include base64 encoding string.
+
+
 ## 5.2. Store and link kubectl command link with VSTS private repository
 
 Link your repo which has kubecntl command. 
@@ -102,7 +121,6 @@ You can use every kubectl command you want. Use kubectlgeneral task.
 You can specify a lot of arguments separated with space or new line. 
 
 ![kubectlgeneral Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/general.png)
-
 
 # 6 Resources
 
