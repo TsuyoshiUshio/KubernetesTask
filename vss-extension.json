@@ -1,10 +1,13 @@
 {
 "manifestVersion": 1,
   "id": "k8s-endpoint",
-  "version": "0.1.45",
-  "name": "Kubernetes Ostrich extension",
-  "description": "Kubernetes Ostrich extension with k8s endpoint. Which enable kubectl command",
-  "publisher": "ostrich",
+  "version": "0.1.29",
+  "name": "Kubernetes extension",
+  "description": "Kubernetes extension with k8s endpoint. Which enable kubectl command",
+  "publisher": "TsuyoshiUshio",
+  "galleryFlags": [
+      "Public"
+  ],
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
@@ -12,6 +15,17 @@
   ],  
   "icons": {
     "default": "images/logo.png"
+  },
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "kubernetes"
+  ],
+  "content": {
+    "details": {
+      "path": "k8s.md"
+    }
   },
     "contributions": [
     {

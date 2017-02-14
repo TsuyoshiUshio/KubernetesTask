@@ -63,4 +63,36 @@ describe('General Task', function () {
         expect(tr.ran("./Tests/kubectl expose deployment echoheaders --port=80 --target-port=8080 --name=echoheaders-x --kubeconfig ./config")).to.be.true;
         done();
     });
+
+    it("make sure the file is written collectly", (done: MochaDone) => {
+        let tp = path.join(__dirname, 'test-general-base64.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        tr.run();
+        let contents: string = fs.readFileSync(config_file_path, 'utf8');
+        let result : string = 
+`
+---
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: "XXXXXXXXXXXXXXXX"
+    server: https://xxxxxxxxmgmt.japanwest.cloudapp.azure.com
+  name: "xxxxxxxxmgmt"
+contexts:
+- context:
+    cluster: "xxxxxxxxmgmt"
+    user: "xxxxxxxxmgmt-admin"
+  name: "xxxxxxxxmgmt"
+current-context: "xxxxxxxxmgmt"
+kind: Config
+users:
+- name: "xxxxxxxxmgmt-admin"
+  user:
+    client-certificate-data: "XXXXXXXXXX"
+    client-key-data: "XXXXXXXXXXXXXXXXXX"
+
+`;
+        expect(contents).to.equal(result);
+        done();
+    });
 });
