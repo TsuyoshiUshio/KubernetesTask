@@ -18,7 +18,7 @@ export class KubectlCommand {
         this.endpoint = tl.getInput('k8sService');
         this.kubeconfig = tl.getEndpointAuthorizationParameter(this.endpoint, 'kubeconfig', true);
         this.kubectlbinary = tl.getInput('kubectlBinary');
-        this.configfile = path.join(tl.cwd(), "config");
+        this.configfile = './kubeconfig';
     }
     append(arg) {
         this.kubectl.arg(arg);
@@ -45,13 +45,18 @@ export class KubectlCommand {
     }
     async execCommand() {
         try {                     
-             tl.checkPath(this.kubectlbinary, 'kubectlBinary');
              tl.debug("cwd(): " + tl.cwd());
              tl.debug("configfile: " + this.configfile);
              await fs.writeFile(this.configfile, this.kubeconfig);
              this.kubectl.arg('--kubeconfig').arg(this.configfile);
 
+            let ls: ToolRunner = tl.tool("ls");
+            ls.arg("-l");
+            await ls.exec();
+
              tl.debug("settings kubectl exec perms");
+             tl.checkPath(this.kubectlbinary, 'kubectlBinary');
+             tl.checkPath(this.configfile, 'configFile');
              await this.kubectl.exec();
 
              tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
