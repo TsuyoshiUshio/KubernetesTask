@@ -14,7 +14,11 @@
   "version": {
     "Major": "0",
     "Minor": "1",
+<<<<<<< HEAD
     "Patch": "27"
+=======
+    "Patch": "25"
+>>>>>>> parent of 00763c9... add support to download kubectl
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlgeneral $(message)",
