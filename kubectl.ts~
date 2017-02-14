@@ -30,8 +30,12 @@ export class KubectlCommand {
             this.kubeconfig = this.decodeBase64(this.kubeconfig);
         }   
         this.kubectlbinary = tl.getInput('kubectlBinary');
+<<<<<<< HEAD
+        this.configfile = './kubeconfig';
+=======
         this.configfile = path.join(tl.cwd(), "config");
         this.kubectl = tl.tool(this.kubectlbinary);
+>>>>>>> origin
     }
     append(arg) {
         this.kubectl.arg(arg);
@@ -40,6 +44,7 @@ export class KubectlCommand {
         this.execCommand();
     }
     async execCommand() {
+<<<<<<< HEAD
         try {                     
              tl.debug("cwd(): " + tl.cwd());
              tl.debug("configfile: " + this.configfile);
@@ -57,6 +62,19 @@ export class KubectlCommand {
 
              tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
              return;
+=======
+        try {
+            tl.checkPath(this.kubectlbinary, 'kubectlBinary');
+            tl.debug("cwd(): " + tl.cwd());
+            tl.debug("configfile: " + this.configfile);
+            await fs.writeFile(this.configfile, this.kubeconfig);
+            this.kubectl.arg('--kubeconfig').arg('./config');
+
+            await this.kubectl.exec();
+
+            tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
+            return;
+>>>>>>> origin
         } catch (err) {
             tl.setResult(tl.TaskResult.Failed, err);
         }

@@ -1,6 +1,7 @@
 {
 "manifestVersion": 1,
   "id": "k8s-endpoint",
+<<<<<<< HEAD
   "version": "0.1.29",
   "name": "Kubernetes extension",
   "description": "Kubernetes extension with k8s endpoint. Which enable kubectl command",
@@ -8,6 +9,12 @@
   "galleryFlags": [
       "Public"
   ],
+=======
+  "version": "0.1.25",
+  "name": "Kubernetes extension",
+  "description": "Kubernetes extension with k8s endpoint. Which enable kubectl command",
+  "publisher": "TsuyoshiUshio",
+>>>>>>> parent of 00763c9... add support to download kubectl
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
