@@ -95,4 +95,13 @@ users:
         expect(contents).to.equal(result);
         done();
     });
+    it("changes the order if it contains -- (double minus) ", (done:MochaDone) => {
+        let tp = path.join(__dirname, 'test-general-doubleminus.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        tr.run();
+        tl.debug(tr.cmdlines);
+        expect(tr.ran("./Tests/kubectl exec mongo-2180634381-zx0d3 --namespace mrp --kubeconfig ./config -- mongo ordering /tmp/MongoRecords.js")).to.be.true;
+        done();
+    });
+
 });
