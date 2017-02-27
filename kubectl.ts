@@ -37,7 +37,7 @@ export class KubectlCommand {
     }
     append(arg) {
         if(!this.configline && arg == "--" ) {
-            this.kubectl.arg('--kubeconfig').arg('./config');
+           this.appendKubeConfig();
             this.configline = true;
         }
         this.kubectl.arg(arg);
@@ -45,6 +45,10 @@ export class KubectlCommand {
     exec() {
         this.execCommand();
     }
+    appendKubeConfig(){
+         this.kubectl.arg('--kubeconfig').arg('./config');
+    }
+
     async execCommand() {
         try {
             tl.checkPath(this.kubectlbinary, 'kubectlBinary');
@@ -52,7 +56,7 @@ export class KubectlCommand {
             tl.debug("configfile: " + this.configfile);
             await fs.writeFile(this.configfile, this.kubeconfig);
             if(!this.configline){
-              this.kubectl.arg('--kubeconfig').arg('./config');
+              this.appendKubeConfig();
               this.configline = true;
             }    
             await this.kubectl.exec();
