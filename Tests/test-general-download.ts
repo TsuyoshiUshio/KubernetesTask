@@ -7,6 +7,7 @@ import path = require('path');
 let taskPath = path.join(__dirname, '..', 'general.js');
 let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
+tr.setInput('kubectlBinary', process.cwd());
 tr.setInput('k8sService', 'k8sendpoint');
 tr.setInput('subCommand', 'get');
 tr.setInput('arguments', 'nodes');
@@ -50,7 +51,7 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
           "code": 0,
           "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
        },
-        "curl -LO https://storage.googleapis.com/kubernetes-release/release/stable.txt": {
+        "curl -L https://storage.googleapis.com/kubernetes-release/release/stable.txt": {
           "code": 0,
           "stdout": "vSomeVersion"  
        },
@@ -58,7 +59,7 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
           "code": 0,
           "stdout": ""  
        },
-        "chmod 777 kubectl": {
+        "chmod 777 /usr/bin/kubectl.vSomeVersion": {
           "code": 0,
           "stdout": ""  
        }

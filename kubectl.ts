@@ -32,6 +32,7 @@ export class KubectlCommand {
             this.kubeconfig = this.decodeBase64(this.kubeconfig);
         }   
         this.kubectlbinary = tl.getInput('kubectlBinary');
+        this.downloadVersion = tl.getInput('downloadVersion');
         this.configfile = './kubeconfig';
     }
     append(arg) {
@@ -41,7 +42,7 @@ export class KubectlCommand {
         this.execCommand();
     }
     async init() {
-        if (!this.kubectlbinary) {
+        if (this.kubectlbinary === tl.cwd()) {
             this.kubectlbinary = await this.downloadKubectl(this.downloadVersion);
         }
 
@@ -49,31 +50,34 @@ export class KubectlCommand {
     }
 
     async downloadKubectl(downloadVersion: string) : Q.Promise<string> {
-        
-        if (!downloadVersion)
-        {
-            tl.debug("getting kubectl current stable version");
-            let curl: ToolRunner = tl.tool("curl");
-            curl.arg("-LO").arg("https://storage.googleapis.com/kubernetes-release/release/stable.txt");
-            var result = curl.execSync();
-            downloadVersion = result.stdout.toString().trim();
-        }
+        try {                     
+            if (!downloadVersion) {
+                tl.debug("getting kubectl current stable version");
+                let curl: ToolRunner = tl.tool("curl");
+                curl.arg("-L").arg("https://storage.googleapis.com/kubernetes-release/release/stable.txt");
+                var result = curl.execSync();
+                downloadVersion = result.stdout.toString().trim();
+            }
 
-        var kubectlBinary = `/usr/bin/kubectl.${downloadVersion}`;
-        if (!fs.exists(kubectlBinary)) {
-            tl.debug(`downloading kubectl [${kubectlBinary}]`);
-            let curl: ToolRunner = tl.tool("curl");
-            curl.arg("-L").arg("-o").arg(kubectlBinary).arg(`https://storage.googleapis.com/kubernetes-release/release/${downloadVersion}/bin/linux/amd64/kubectl`);
-            await curl.exec();
-            
-            tl.debug("settings kubectl exec perms");
-            let chmod: ToolRunner = tl.tool("chmod");
-            chmod.arg("777").arg("kubectl");
-            await chmod.exec();            
-        }
+            var kubectlBinary = `/usr/bin/kubectl.${downloadVersion}`;
+            if (!fs.exists(kubectlBinary)) {
+                tl.debug(`downloading kubectl [${kubectlBinary}]`);
+                let curl: ToolRunner = tl.tool("curl");
+                curl.arg("-L").arg("-o").arg(kubectlBinary).arg(`https://storage.googleapis.com/kubernetes-release/release/${downloadVersion}/bin/linux/amd64/kubectl`);
+                await curl.exec();
+                
+                tl.debug("settings kubectl exec perms");
+                let chmod: ToolRunner = tl.tool("chmod");
+                chmod.arg("777").arg(kubectlBinary);
+                await chmod.exec();            
+            }
 
-        tl.debug(`using [${kubectlBinary}]`);
-        return kubectlBinary;
+            tl.debug(`using [${kubectlBinary}]`);
+            return kubectlBinary;
+        } catch (err) {
+           tl.setResult(tl.TaskResult.Failed, err);
+           throw(err);
+        }
     }
 
     async execCommand() {
