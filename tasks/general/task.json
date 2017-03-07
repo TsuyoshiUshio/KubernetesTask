@@ -30,9 +30,17 @@
       "name": "kubectlBinary",
       "type": "filePath",
       "label": "kubectl binary",
-      "defaultValue": "./kubectl",
+      "defaultValue": "",
       "required": false,
-      "helpMarkDown": "Select your kubectl according to your version"
+      "helpMarkDown": "Select your local kubectl if available (leave blank to download)"
+    },
+    {
+      "name": "downloadVersion",
+      "type": "string",
+      "label": "kubectl download version",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select the kubectl version to download e.g. 'v1.5.2' (leave blank for latest)"
     },
     {
       "name": "subCommand",

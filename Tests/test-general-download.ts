@@ -7,11 +7,9 @@ import path = require('path');
 let taskPath = path.join(__dirname, '..', 'general.js');
 let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
-tr.setInput('kubectlBinary', './Tests/kubectl');
 tr.setInput('k8sService', 'k8sendpoint');
-tr.setInput('subCommand', 'expose');
-tr.setInput('arguments', 'deployment echoheaders\n--port=80\n--target-port=8080\n--name=echoheaders-x');
-
+tr.setInput('subCommand', 'get');
+tr.setInput('arguments', 'nodes');
 
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
@@ -40,18 +38,31 @@ users:
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "checkPath": {
-        "./Tests/kubectl": true,
+        "./Tests/my-nginx.yml": true,
+        "/usr/bin/kubectl.vSomeVersion": true,
         "./kubeconfig": true
     },
     "cwd": {
         "cwd": process.cwd(),
     },
     "exec": {
-       "./Tests/kubectl expose deployment echoheaders --port=80 --target-port=8080 --name=echoheaders-x --kubeconfig ./config": {
+       "/usr/bin/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig": {
           "code": 0,
-          "stdout": "echoheader exposed."  
+          "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
+       },
+        "curl -LO https://storage.googleapis.com/kubernetes-release/release/stable.txt": {
+          "code": 0,
+          "stdout": "vSomeVersion"  
+       },
+        "curl -L -o /usr/bin/kubectl.vSomeVersion https://storage.googleapis.com/kubernetes-release/release/vSomeVersion/bin/linux/amd64/kubectl": {
+          "code": 0,
+          "stdout": ""  
+       },
+        "chmod 777 kubectl": {
+          "code": 0,
+          "stdout": ""  
        }
-   } 
+    } 
 }
 tr.setAnswers(a);
 

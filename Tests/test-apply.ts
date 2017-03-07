@@ -10,6 +10,7 @@ let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 tr.setInput('yamlfile', './Tests/my-nginx.yml');
 tr.setInput('kubectlBinary', './Tests/kubectl');
 tr.setInput('k8sService', 'k8sendpoint');
+tr.setInput('system.debug', 'true');
 
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
@@ -42,13 +43,14 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     },
     "checkPath": {
         "./Tests/my-nginx.yml": true,
-        "./Tests/kubectl": true
+        "./Tests/kubectl": true,
+        "./kubeconfig": true
     },
     "cwd": {
         "cwd": process.cwd(),
     },
     "exec": {
-       "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./config": {
+       "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./kubeconfig": {
           "code": 0,
           "stdout": "deployment \"nginx-deployment\" created"  
        }

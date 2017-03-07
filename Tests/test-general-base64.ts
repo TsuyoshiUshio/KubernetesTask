@@ -17,7 +17,8 @@ process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `Ci0tLQphcGlWZXJ
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "checkPath": {
-        "./Tests/kubectl": true
+        "./Tests/kubectl": true,
+        "./kubeconfig": true
     },
     "cwd": {
         "cwd": process.cwd(),

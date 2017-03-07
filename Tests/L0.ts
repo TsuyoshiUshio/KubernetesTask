@@ -13,7 +13,7 @@ let fs = require('fs');
 
 let parent_dir = path.normalize(path.join(__dirname, '..'));
 tl.debug("parent_dir: " + parent_dir);
-let config_file_path = path.join(parent_dir, "config");
+let config_file_path = "./kubeconfig";
 
 function isExistFile(file) {
     try {
@@ -37,7 +37,6 @@ describe('Kubectl apply Task', function () {
 
     });
 
-
     it("configure kubectl", (done: MochaDone) => {
         let tp = path.join(__dirname, 'test-apply.js');
         tl.debug('tp: ' + tp);
@@ -45,6 +44,7 @@ describe('Kubectl apply Task', function () {
         tr.run();
         expect(tr.succeeded).to.equal(true);
 
+        tl.debug('config_file_path: ' + config_file_path);
         expect(isExistFile(config_file_path)).to.be.true;
         done();
     });
@@ -54,8 +54,7 @@ describe('Kubectl apply Task', function () {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         tl.debug(tr.cmdlines);
-        expect(tr.ran("./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./config")).to.be.true;
+        expect(tr.ran("./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./kubeconfig")).to.be.true;
         done();
     });
-
 });
