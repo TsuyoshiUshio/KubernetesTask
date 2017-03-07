@@ -1,7 +1,7 @@
 {
-  "id": "9bf07640-ed9b-aaaa-8ac1-6b0636b1490f",
+  "id": "9bf07640-ed9b-11e6-8ac1-6b0636b1490f",
   "name": "kubectlapply",
-  "friendlyName": "Kubernetes Ostrich Apply Task 45",
+  "friendlyName": "Kubernetes Apply Task",
   "description": "Kubernetes Task. You can use kubectl apply by this command.",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "Kubernetes task",
@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "27"
+    "Patch": "28"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlapply $(message)",

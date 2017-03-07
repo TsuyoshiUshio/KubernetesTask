@@ -1,7 +1,7 @@
 {
-  "id": "c23cfb10-e7fc-aaaa-a48f-4344fe0f2ea4",
+  "id": "c23cfb10-e7fc-11e6-a48f-4344fe0f2ea4",
   "name": "kubectlgeneral",
-  "friendlyName": "Kubernetes Ostrich General Task 45",
+  "friendlyName": "Kubernetes General Task 54",
   "description": "kubectl command which you can use it for every commands",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "execute any kubectl command",
@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "27"
+    "Patch": "28"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlgeneral $(message)",
