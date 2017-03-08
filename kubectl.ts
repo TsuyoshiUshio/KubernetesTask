@@ -55,11 +55,11 @@ export class KubectlCommand {
                 tl.debug("getting kubectl current stable version");
                 let curl: ToolRunner = tl.tool("curl");
                 curl.arg("-L").arg("https://storage.googleapis.com/kubernetes-release/release/stable.txt");
-                var result = curl.execSync();
+                let result = curl.execSync();
                 downloadVersion = result.stdout.toString().trim();
             }
 
-            var kubectlBinary = `/usr/bin/kubectl.${downloadVersion}`;
+            let kubectlBinary = `/usr/bin/kubectl.${downloadVersion}`;
             if (!fs.exists(kubectlBinary)) {
                 tl.debug(`downloading kubectl [${kubectlBinary}]`);
                 let curl: ToolRunner = tl.tool("curl");
