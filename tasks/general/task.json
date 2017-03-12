@@ -1,7 +1,7 @@
 {
   "id": "c23cfb10-e7fc-11e6-a48f-4344fe0f2ea4",
   "name": "kubectlgeneral",
-  "friendlyName": "Kubernetes General Task",
+  "friendlyName": "Kubernetes General Task 54",
   "description": "kubectl command which you can use it for every commands",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "execute any kubectl command",
@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "27"
+    "Patch": "28"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlgeneral $(message)",
@@ -31,8 +31,16 @@
       "type": "filePath",
       "label": "kubectl binary",
       "defaultValue": "",
-      "required": true,
-      "helpMarkDown": "Select your kubectl according to your version"
+      "required": false,
+      "helpMarkDown": "Select your local kubectl if available (leave blank to download)"
+    },
+    {
+      "name": "downloadVersion",
+      "type": "string",
+      "label": "kubectl download version",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select the kubectl version to download e.g. 'v1.5.2' (leave blank for latest)"
     },
     {
       "name": "subCommand",
