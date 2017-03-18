@@ -70,6 +70,9 @@ for deployment. Internally, it calls `kubectl apply` command.
 
 If you want to change the YAML file dynamically, you can use [Replace tokens](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens) on the VSTS Marketplace.
 
+NOW you can see the `downloadVersion` textbox. If you don't specify `KubectlBinary`, this task automatically download the latest
+kubebinary. If you want to specify the version, fill the `downloadVersion`. 
+
 ## 1.4. Setup your kubectlgeneral task
 
 You can use every kubectl command you want. Use kubectlgeneral task.
