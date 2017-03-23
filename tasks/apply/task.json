@@ -12,9 +12,9 @@
   ],
   "demands": [],
   "version": {
-    "Major": "1",
-    "Minor": "0",
-    "Patch": "0"
+    "Major": "0",
+    "Minor": "3",
+    "Patch": "3"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlapply $(message)",
