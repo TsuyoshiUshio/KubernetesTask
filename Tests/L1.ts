@@ -7,13 +7,10 @@ import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
 import * as tl from 'vsts-task-lib/task';
 
-
 let expect = require('chai').expect;
 let fs = require('fs');
 
-let parent_dir = path.normalize(path.join(__dirname, '..'));
-tl.debug("parent_dir: " + parent_dir);
-let config_file_path = path.join(parent_dir, "config");
+let config_file_path = "./kubeconfig";
 
 function isExistFile(file) {
     try {
@@ -36,6 +33,14 @@ describe('General Task', function () {
 
     });
 
+    it("exec command with kubectl download", (done:MochaDone) => {
+        let tp = path.join(__dirname, 'test-general-download.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        tr.run();
+        tl.debug(tr.cmdlines);
+        expect(tr.ran("/usr/bin/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig")).to.be.true;
+        done();
+    });
 
     it("configure kubectl", (done: MochaDone) => {
         let tp = path.join(__dirname, 'test-general.js');
@@ -51,7 +56,7 @@ describe('General Task', function () {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         tl.debug(tr.cmdlines);
-        expect(tr.ran("./Tests/kubectl get nodes --kubeconfig ./config")).to.be.true;
+        expect(tr.ran("./Tests/kubectl get nodes --kubeconfig ./kubeconfig")).to.be.true;
         done();
     });
 
@@ -60,7 +65,7 @@ describe('General Task', function () {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         tl.debug(tr.cmdlines);
-        expect(tr.ran("./Tests/kubectl expose deployment echoheaders --port=80 --target-port=8080 --name=echoheaders-x --kubeconfig ./config")).to.be.true;
+        expect(tr.ran("./Tests/kubectl expose deployment echoheaders --port=80 --target-port=8080 --name=echoheaders-x --kubeconfig ./kubeconfig")).to.be.true;
         done();
     });
 
@@ -100,7 +105,7 @@ users:
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         tl.debug(tr.cmdlines);
-        expect(tr.ran("./Tests/kubectl exec mongo-2180634381-zx0d3 --namespace mrp --kubeconfig ./config -- mongo ordering /tmp/MongoRecords.js")).to.be.true;
+        expect(tr.ran("./Tests/kubectl exec mongo-2180634381-zx0d3 --namespace mrp --kubeconfig ./kubeconfig -- mongo ordering /tmp/MongoRecords.js")).to.be.true;
         done();
     });
 

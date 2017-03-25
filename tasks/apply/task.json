@@ -10,11 +10,12 @@
     "Build",
     "Release"
   ],
+  "preview": true,
   "demands": [],
   "version": {
-    "Major": "0",
-    "Minor": "3",
-    "Patch": "3"
+    "Major": "2",
+    "Minor": "0",
+    "Patch": "2"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlapply $(message)",
@@ -40,7 +41,15 @@
       "label": "kubectl binary",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "Select your kubectl according to your version"
+      "helpMarkDown": "Select your local kubectl if available (leave blank to download)"
+    },
+    {
+      "name": "downloadVersion",
+      "type": "string",
+      "label": "kubectl download version",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select the kubectl version to download e.g. 'v1.5.2' (leave blank for latest)"
     }
   ],
   "execution": {

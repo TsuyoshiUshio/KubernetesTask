@@ -40,7 +40,8 @@ users:
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "checkPath": {
-        "./Tests/kubectl": true
+        "./Tests/kubectl": true,
+        "./kubeconfig": true
     },
     "cwd": {
         "cwd": process.cwd(),

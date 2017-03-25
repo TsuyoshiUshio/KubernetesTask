@@ -40,13 +40,14 @@ users:
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "checkPath": {
         "./Tests/my-nginx.yml": true,
-        "./Tests/kubectl": true
+        "./Tests/kubectl": true,
+        "./kubeconfig": true
     },
     "cwd": {
         "cwd": process.cwd(),
     },
     "exec": {
-       "./Tests/kubectl get nodes --kubeconfig ./config": {
+       "./Tests/kubectl get nodes --kubeconfig ./kubeconfig": {
           "code": 0,
           "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
        }

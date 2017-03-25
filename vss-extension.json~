@@ -10,11 +10,11 @@
       "Public"
   ],
 =======
-  "version": "0.1.25",
-  "name": "Kubernetes extension",
-  "description": "Kubernetes extension with k8s endpoint. Which enable kubectl command",
-  "publisher": "TsuyoshiUshio",
->>>>>>> parent of 00763c9... add support to download kubectl
+  "version": "0.1.45",
+  "name": "Kubernetes Ostrich extension",
+  "description": "Kubernetes Ostrich extension with k8s endpoint. Which enable kubectl command",
+  "publisher": "ostrich",
+>>>>>>> 00763c9... add support to download kubectl
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"

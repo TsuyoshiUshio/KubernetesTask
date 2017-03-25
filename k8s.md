@@ -4,7 +4,9 @@ Kubernetes extension for VSTS
 Enable Kubernetes extension for VSTS. Kubernetes endpoint for kubectl config and kubectl apply build task.
 Mainly aim for using Linux Hosted Agent(preview).
 
-Stable version is 1.0.0 or later. You can test it make it 0.x.x with preview tag.
+
+Currently, stable version tasks are version 0.x.x. 1.0.0 or later is preview. 
+
 
 [GitHub: KubernetesTask](https://github.com/TsuyoshiUshio/KubernetesTask)
 
@@ -71,6 +73,9 @@ for deployment. Internally, it calls `kubectl apply` command.
 ![kubectlapply Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/pipeline01.png)
 
 If you want to change the YAML file dynamically, you can use [Replace tokens](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens) on the VSTS Marketplace.
+
+NOW you can see the `downloadVersion` textbox. If you don't specify `KubectlBinary`, this task automatically download the latest
+kubebinary. If you want to specify the version, fill the `downloadVersion`. 
 
 ## 1.4. Setup your kubectlgeneral task
 

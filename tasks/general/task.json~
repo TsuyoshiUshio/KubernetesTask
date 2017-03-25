@@ -1,7 +1,7 @@
 {
-  "id": "c23cfb10-e7fc-11e6-a48f-4344fe0f2ea4",
+  "id": "c23cfb10-e7fc-aaaa-a48f-4344fe0f2ea4",
   "name": "kubectlgeneral",
-  "friendlyName": "Kubernetes General Task",
+  "friendlyName": "Kubernetes Ostrich General Task 45",
   "description": "kubectl command which you can use it for every commands",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "execute any kubectl command",
@@ -17,8 +17,8 @@
 <<<<<<< HEAD
     "Patch": "27"
 =======
-    "Patch": "25"
->>>>>>> parent of 00763c9... add support to download kubectl
+    "Patch": "45"
+>>>>>>> 00763c9... add support to download kubectl
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "kubectlgeneral $(message)",
@@ -34,8 +34,8 @@
       "name": "kubectlBinary",
       "type": "filePath",
       "label": "kubectl binary",
-      "defaultValue": "",
-      "required": true,
+      "defaultValue": "./kubectl",
+      "required": false,
       "helpMarkDown": "Select your kubectl according to your version"
     },
     {
