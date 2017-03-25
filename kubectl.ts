@@ -42,6 +42,11 @@ export class KubectlCommand {
         this.execCommand();
     }
     async init() {
+        tl.debug("cwd(): " + tl.cwd());
+        tl.debug("configfile: " + this.configfile);
+        fs.writeFileSync(this.configfile, this.kubeconfig);
+
+
         if (this.kubectlbinary === tl.cwd()) {
             this.kubectlbinary = await this.downloadKubectl(this.downloadVersion);
         }
@@ -81,12 +86,8 @@ export class KubectlCommand {
     }
 
     async execCommand() {
-        try {                     
-             tl.debug("cwd(): " + tl.cwd());
-             tl.debug("configfile: " + this.configfile);
-             await fs.writeFile(this.configfile, this.kubeconfig);
-             this.kubectl.arg('--kubeconfig').arg(this.configfile);
-
+        try {       
+             this.kubectl.arg('--kubeconfig').arg(this.configfile);              
              tl.debug("settings kubectl exec perms");
              tl.checkPath(this.kubectlbinary, 'kubectlBinary');
              tl.checkPath(this.configfile, 'configFile');
