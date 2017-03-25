@@ -137,7 +137,7 @@ kubebinary. If you want to specify the version, fill the `downloadVersion`, e.g.
 # 6 Version management
 
 We need to test this plugin in VSTS before rolling out. However, if we want to test this, we need to deploy to the Marketplace.
-If we create a new feature, the task version will be the next measure version. However, we might upgrade vss-extension.json's version.
+If we create a new feature, the task version will be the next major version. However, we might upgrade vss-extension.json's version.
 I'm showing you an example.
 
 ```
