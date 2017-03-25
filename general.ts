@@ -15,8 +15,10 @@ kubectl.init().then(
     function() {
         kubectl.append(subCommand);
 
-        multilineArgs.split(/\s+/).map(function (x) { kubectl.append(x) });
-
+        if (multilineArgs) {
+            multilineArgs.split(/\s+/).map(function (x) { kubectl.append(x) });
+        }
+        
         kubectl.exec();
     }
 );
