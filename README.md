@@ -134,7 +134,30 @@ You can specify a lot of arguments separated with space or new line.
 You can see the `downloadVersion` textbox. If you don't specify `KubectlBinary`, this task automatically download the latest
 kubebinary. If you want to specify the version, fill the `downloadVersion`, e.g. `v1.5.2`.
 
-# 6 Resources
+# 6 Version management
+
+We need to test this plugin in VSTS before rolling out. However, if we want to test this, we need to deploy to the Marketplace.
+If we create a new feature, the task version will be the next measure version. However, we might upgrade vss-extension.json's version.
+I'm showing you an example.
+
+```
+Current task version: v1.0.0 
+Current vss-extension version: v1.0.0 
+```
+
+If you want to develop a new feature, you can deploy to the Marketplace using these versions.
+
+```
+Task version: v2.0.0 (with preview tag)
+Vss-extension version: v1.0.1
+```
+
+In this case, customer environment won't be influenced by this release. They keep on using v1.0.0
+If I choose v2.0.0 Preview intendedly, we can change the version.
+Since this feature might be preview in VSTS, this spec might change in the future.
+
+
+# 7 Resources
 
 [Step by Step: Node Task with Typescript API](https://github.com/Microsoft/vsts-task-lib/blob/master/node/docs/stepbystep.md)
 
