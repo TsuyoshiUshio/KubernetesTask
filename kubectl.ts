@@ -15,6 +15,7 @@ export class KubectlCommand {
     downloadVersion: string;
     configfile: string;
     kubectl: ToolRunner;
+    configline: boolean;
 
     isBase64(contents) {
     let base64Regx = /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/
@@ -32,15 +33,27 @@ export class KubectlCommand {
             this.kubeconfig = this.decodeBase64(this.kubeconfig);
         }   
         this.kubectlbinary = tl.getInput('kubectlBinary');
+        this.kubectl = tl.tool(this.kubectlbinary);
+        this.configline = false;
         this.downloadVersion = tl.getInput('downloadVersion');
         this.configfile = './kubeconfig';
+
     }
     append(arg) {
+        if(!this.configline && arg == "--" ) {
+           this.appendKubeConfig();
+            this.configline = true;
+        }
         this.kubectl.arg(arg);
     }
     exec() {
         this.execCommand();
     }
+
+    appendKubeConfig(){
+         this.kubectl.arg('--kubeconfig').arg(this.configfile);
+    }
+
     async init() {
         tl.debug("cwd(): " + tl.cwd());
         tl.debug("configfile: " + this.configfile);
@@ -86,12 +99,16 @@ export class KubectlCommand {
     }
 
     async execCommand() {
-        try {       
-             this.kubectl.arg('--kubeconfig').arg(this.configfile);              
+        try {                   
              tl.debug("settings kubectl exec perms");
              tl.checkPath(this.kubectlbinary, 'kubectlBinary');
              tl.checkPath(this.configfile, 'configFile');
+             if(!this.configline){
+                this.appendKubeConfig();
+                this.configline = true;
+             }  
              await this.kubectl.exec();
+
 
              tl.setResult(tl.TaskResult.Succeeded, "kubectl works.");
              return;

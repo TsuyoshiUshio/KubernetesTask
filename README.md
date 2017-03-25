@@ -47,6 +47,8 @@ Go to the Market place [Market Place Manage](https://marketplace.visualstudio.co
 Then upload and share with your VSTS account.
 [Tsuyoshi Ushio's publisher site](https://marketplace.visualstudio.com/manage/publishers/tsuyoshiushio)
 
+Stable version is 1.0.0 or later. You can test it make it 0.x.x with preview tag.
+
 # 4. Current road map
 
 Now I just start this project. Just initial commit. 
