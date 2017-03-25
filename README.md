@@ -4,7 +4,7 @@ Kubernetes extension for VSTS
 Enable Kubernetes extension for VSTS. Kubernetes endpoint for kubectl config and kubectl apply build task.
 Mainly aim for using Linux Hosted Agent(preview).
 
-Currently, stable version tasks are version 0.x.x. 1.0.0 or later is preview. 
+Currently, stable version tasks are version 0.x.x. or 1.x.x. 2.0.0 or later is preview. 
 
 ![Header](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/Header.png)
 
@@ -102,6 +102,8 @@ You can find {filename}_new file which include base64 encoding string.
 
 ## 5.2. Store and link kubectl command link with VSTS private repository
 
+If you use ver 2.0, you don't need this operation. However, this operation could fasten your pipeline without downloading a kubectl binary.
+
 Link your repo which has kubecntl command. 
 
 ![Link Artifact](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/linkaritifact.png)
@@ -115,12 +117,12 @@ Please `chmod +x kubectl` before adding kubectl to your repo.
 Then you can use the endpoint, specify the kubectl command and YAML file 
 for deployment. Internally, it calls `kubectl apply` command. 
 
-![kubectlapply Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/pipeline01.png)
+![kubectlapply Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/apply.png)
 
 If you want to change the YAML file dynamically, you can use [Replace tokens](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens) on the VSTS Marketplace.
 
-NOW you can see the `downloadVersion` textbox. If you don't specify `KubectlBinary`, this task automatically download the latest
-kubebinary. If you want to specify the version, fill the `downloadVersion`. 
+You can see the `downloadVersion` textbox. If you don't specify `KubectlBinary`, this task automatically download the latest
+kubebinary. If you want to specify the version, fill the `downloadVersion`, e.g. `v1.5.2`.
 
 ## 5.4. Setup your kubectlgeneral task
 
@@ -129,7 +131,33 @@ You can specify a lot of arguments separated with space or new line.
 
 ![kubectlgeneral Task](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/general.png)
 
-# 6 Resources
+You can see the `downloadVersion` textbox. If you don't specify `KubectlBinary`, this task automatically download the latest
+kubebinary. If you want to specify the version, fill the `downloadVersion`, e.g. `v1.5.2`.
+
+# 6 Version management
+
+We need to test this plugin in VSTS before rolling out. However, if we want to test this, we need to deploy to the Marketplace.
+If we create a new feature, the task version will be the next measure version. However, we might upgrade vss-extension.json's version.
+I'm showing you an example.
+
+```
+Current task version: v1.0.0 
+Current vss-extension version: v1.0.0 
+```
+
+If you want to develop a new feature, you can deploy to the Marketplace using these versions.
+
+```
+Task version: v2.0.0 (with preview tag)
+Vss-extension version: v1.0.1
+```
+
+In this case, customer environment won't be influenced by this release. They keep on using v1.0.0
+If I choose v2.0.0 Preview intendedly, we can change the version.
+Since this feature might be preview in VSTS, this spec might change in the future.
+
+
+# 7 Resources
 
 [Step by Step: Node Task with Typescript API](https://github.com/Microsoft/vsts-task-lib/blob/master/node/docs/stepbystep.md)
 
