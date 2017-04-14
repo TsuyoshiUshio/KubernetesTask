@@ -90,6 +90,11 @@ export class KubectlCommand {
                 await chmod.exec();            
             }
 
+            tl.debug("Linking this version of kubectl");
+            let ln: ToolRunner = tl.tool("ln");
+            ln.arg("-s").arg(kubectlBinary).arg("/usr/bin/kubectl");
+            await ln.exec();
+
             tl.debug(`using [${kubectlBinary}]`);
             return kubectlBinary;
         } catch (err) {
