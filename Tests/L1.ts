@@ -38,7 +38,7 @@ describe('General Task', function () {
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
         tl.debug(tr.cmdlines);
-        expect(tr.ran("/usr/bin/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig")).to.be.true;
+        expect(tr.ran("/opt/vsts/work/r1/a/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig")).to.be.true;
         done();
     });
 

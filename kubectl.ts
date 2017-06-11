@@ -76,8 +76,8 @@ export class KubectlCommand {
                 let result = curl.execSync();
                 downloadVersion = result.stdout.toString().trim();
             }
-
-            let kubectlBinary = `/usr/bin/kubectl.${downloadVersion}`;
+            let kubectlBinaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'];
+            let kubectlBinary = kubectlBinaryDir + `/kubectl.${downloadVersion}`;
             if (!fs.exists(kubectlBinary)) {
                 tl.debug(`downloading kubectl [${kubectlBinary}]`);
                 let curl: ToolRunner = tl.tool("curl");
