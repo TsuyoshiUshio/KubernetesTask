@@ -4,13 +4,13 @@ import ma = require('vsts-task-lib/mock-answer');
 import tmrm = require('vsts-task-lib/mock-run');
 import path = require('path');
 
-let taskPath = path.join(__dirname, '..', 'general.js');
+let taskPath = path.join(__dirname, '..', 'apply.js');
 let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
-tr.setInput('kubectlBinary', process.cwd());
+tr.setInput('yamlfile', './Tests/my-nginx.yml');
+tr.setInput('kubectlBinary', './Tests/kubectl');
 tr.setInput('k8sService', 'k8sendpoint');
-tr.setInput('subCommand', 'get');
-tr.setInput('arguments', 'nodes');
+tr.setInput('system.debug', 'true');
 
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
@@ -38,35 +38,26 @@ users:
 `;
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
+    "which": {
+        "echo":  "/usr/bin/echo"
+    },
     "checkPath": {
         "./Tests/my-nginx.yml": true,
-        "/usr/bin/kubectl.vSomeVersion": true,
+        "./Tests/kubectl": true,
         "./kubeconfig": true
     },
     "cwd": {
         "cwd": process.cwd(),
     },
     "osType": {
-        "osType": "Linux",
+        "osType": "Windows_NT",
     },
     "exec": {
-       "/usr/bin/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig": {
+       "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./kubeconfig": {
           "code": 0,
-          "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
-       },
-        "curl -L https://storage.googleapis.com/kubernetes-release/release/stable.txt": {
-          "code": 0,
-          "stdout": "vSomeVersion"  
-       },
-        "curl -L -o /usr/bin/kubectl.vSomeVersion https://storage.googleapis.com/kubernetes-release/release/vSomeVersion/bin/linux/amd64/kubectl": {
-          "code": 0,
-          "stdout": ""  
-       },
-        "chmod 777 /usr/bin/kubectl.vSomeVersion": {
-          "code": 0,
-          "stdout": ""  
+          "stdout": "deployment \"nginx-deployment\" created"  
        }
-    } 
+   } 
 }
 tr.setAnswers(a);
 

@@ -23,7 +23,6 @@ function isExistFile(file) {
 
 describe('General Task', function () {
     before(() => {
-
         fs.unlink(config_file_path, function (err) {
             if (err) tl.debug("config not found (It's OK.)");
         });
