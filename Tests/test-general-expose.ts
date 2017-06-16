@@ -45,6 +45,9 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     },
     "cwd": {
         "cwd": process.cwd(),
+    },    
+    "osType": {
+        "osType": "Linux",
     },
     "exec": {
        "./Tests/kubectl expose deployment echoheaders --port=80 --target-port=8080 --name=echoheaders-x --kubeconfig ./config": {

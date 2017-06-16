@@ -46,6 +46,9 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "cwd": {
         "cwd": process.cwd(),
     },
+    "osType": {
+        "osType": "Linux",
+    },
     "exec": {
        "./Tests/kubectl get nodes --kubeconfig ./kubeconfig": {
           "code": 0,

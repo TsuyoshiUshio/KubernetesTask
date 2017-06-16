@@ -50,7 +50,7 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
         "cwd": process.cwd(),
     },
     "osType": {
-        "osType": "Linux",
+        "osType": "Windows_NT",
     },
     "exec": {
        "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./kubeconfig": {

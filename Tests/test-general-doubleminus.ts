@@ -45,6 +45,9 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "cwd": {
         "cwd": process.cwd(),
     },
+    "osType": {
+        "osType": "Linux",
+    },
     "exec": {
        "./Tests/kubectl exec mongo-2180634381-zx0d3 --namespace mrp --kubeconfig ./kubeconfig -- mongo ordering /tmp/MongoRecords.js": {
           "code": 0,

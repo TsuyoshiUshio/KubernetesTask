@@ -57,4 +57,25 @@ describe('Kubectl apply Task', function () {
         expect(tr.ran("./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./kubeconfig")).to.be.true;
         done();
     });
+
+    it("success when a user use hosted agent(linux)", (done: MochaDone) => {
+        process.env['Agent.OS'] = 'linux'
+        let tp = path.join(__dirname, 'test-apply.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        tr.run();
+        expect(tr.stderr.length, 0);
+        done();
+    }); 
+
+    it("fails when a user use hosted agent(windows)", (done: MochaDone) => {
+        process.env['Agent.OS'] = undefined
+        let tp = path.join(__dirname, 'test-apply-oscheck.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        tr.run();
+        expect(tr.stderr.length).to.not.equal(0);
+        tl.debug(tr.stderr.length.toString());
+        tl.debug(tr.stderr);
+        expect(tr.stderr).to.match(/.*This task does not work for Windows agent\./);
+        done();
+    }); 
 });
