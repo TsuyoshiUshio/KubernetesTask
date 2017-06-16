@@ -55,6 +55,11 @@ export class KubectlCommand {
     }
 
     async init() {
+        var isWin = tl.osType().match(/^Win/);
+        if (isWin) {
+            tl.setResult(tl.TaskResult.Failed, "This task does not work for Windows agent")
+            throw "This task does not work for Windows agent."
+        }
         tl.debug("cwd(): " + tl.cwd());
         tl.debug("configfile: " + this.configfile);
         fs.writeFileSync(this.configfile, this.kubeconfig);
