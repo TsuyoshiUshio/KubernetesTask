@@ -59,7 +59,6 @@ describe('Kubectl apply Task', function () {
     });
 
     it("success when a user use hosted agent(linux)", (done: MochaDone) => {
-        process.env['Agent.OS'] = 'linux'
         let tp = path.join(__dirname, 'test-apply.js');
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
@@ -68,7 +67,6 @@ describe('Kubectl apply Task', function () {
     }); 
 
     it("fails when a user use hosted agent(windows)", (done: MochaDone) => {
-        process.env['Agent.OS'] = undefined
         let tp = path.join(__dirname, 'test-apply-oscheck.js');
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();

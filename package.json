@@ -8,7 +8,8 @@
   },
   "scripts": {
     "pretest": "tsc -p .",
-    "test": "mocha ./Tests/L0.js ./Tests/L1.js --reporter mocha-junit-reporter",
+    "test": "mocha ./Tests/L0.js ./Tests/L1.js",
+    "report": "tsc -p .& mocha ./Tests/L0.js ./Tests/L1.js --reporter mocha-junit-reporter",
     "deploy": "deploy.bat",
     "build": "tfx extension create --manifest-globs vss-extension.json"
   },
