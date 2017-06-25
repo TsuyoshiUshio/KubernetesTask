@@ -72,6 +72,21 @@ export class KubectlCommand {
         this.kubectl = tl.tool(this.kubectlbinary);
     }
 
+    async downloadIstioctl() : Q.Promise<string> {
+        let bash = new ToolRunner(tl.which('bash', true));
+        let downloader ="";
+        let fileName = "./.istiodownloader.sh";
+        fs.writeFileSync(fileName, downloader);
+        bash.arg(fileName);
+        try {
+            bash.execSync();
+        } catch(err) {
+            tl.setResult(tl.TaskResult.Failed, err);
+            throw "Failed to exec the .istiodownloader.sh which is istio downloader."
+        }
+    }
+
+
     async downloadKubectl(downloadVersion: string) : Q.Promise<string> {
         try {                     
             if (!downloadVersion) {
