@@ -38,6 +38,9 @@ describe('General Task', function () {
         tr.run();
         tl.debug(tr.cmdlines);
         expect(tr.ran("/opt/vsts/work/r1/a/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig")).to.be.true;
+        expect(tr.ran("cp /opt/vsts/work/r1/a/kubectl.vSomeVersion /opt/vsts/work/r1/a/kubectl"));
+        // We should test the setVariables for KUBECONFIG and PATH. 
+        // Currently we can't test it. Need to wait the future release of VSTS task lib.
         done();
     });
 
