@@ -14,35 +14,46 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "0"
+    "Patch": "8"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "downloader $(message)",
   "inputs": [
-    {
-      "name": "cwd",
-      "type": "filePath",
-      "label": "Working Directory",
-      "defaultValue": "",
-      "required": false,
-      "helpMarkDown": "Current working directory when downloader is run."
+        {
+      "name": "k8sService",
+      "type": "connectedService:kubernetes",
+      "label": "k8s end point",
+      "required": true,
+      "helpMarkDowls 0n": "Select Kubernetes endo point to use."
     },
     {
-      "name": "msg",
+      "name": "kubectlBinary",
+      "type": "filePath",
+      "label": "kubectl binary",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select your local kubectl if available (leave blank to download)"
+    },
+    {
+      "name": "downloadVersion",
       "type": "string",
-      "label": "Message",
-      "defaultValue": "Hello World",
-      "required": true,
-      "helpMarkDown": "Message to echo out"
+      "label": "kubectl download version",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select the kubectl version to download e.g. 'v1.5.2' (leave blank for latest)"
+    },
+    {
+      "name": "hasIstio",
+      "type": "boolean",
+      "label": "Enable istioctl",
+      "defaultValue": "true",
+      "helpMarkDown": "Enable istioctl. Download and add PATH environment."
     }
   ],
   "execution": {
     "Node": {
-      "target": "sample.js",
+      "target": "downloader.js",
       "argumentFormat": ""
-    },
-    "PowerShell3": {
-      "target": "sample.ps1"
     }
   }
 }
