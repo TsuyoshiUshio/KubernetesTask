@@ -81,7 +81,7 @@
         "name": "tasks/general"
       }
     },
-      {
+    {
       "id": "downloader-task",
       "description": "Task downloads kubectl and istioctl with adding path for you.",
       "type": "ms.vss-distributed-task.task",
@@ -89,7 +89,16 @@
       "properties": {
         "name": "tasks/downloader"
       }
-    }
+    },
+    {
+      "id": "istio-task",
+      "description": "Task execute istioctl command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/istio"
+      }
+    }    
   ],
   "files": [
     {
@@ -100,6 +109,9 @@
     },
     {
       "path": "tasks/downloader"
+    },
+    {
+      "path": "tasks/istio"
     }
   ]
 }
