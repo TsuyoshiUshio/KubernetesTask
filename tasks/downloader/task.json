@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "15"
+    "Patch": "17"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "downloader $(message)",
@@ -56,6 +56,21 @@
       "defaultValue": "0.1.6",
       "visibleRule": "hasIstio = true",
       "helpMarkDown": "Select the istioctl version to download e.g. '0.1.6' by default 0.1.6"
+    },
+    {
+      "name": "hasHelm",
+      "type": "boolean",
+      "label": "Enable helm",
+      "defaultValue": "true",
+      "helpMarkDown": "Enable helm. Download and add PATH environment."
+    },
+    {
+      "name": "helmVersion",
+      "type": "string",
+      "label": "helm download version",
+      "defaultValue": "2.5.0",
+      "visibleRule": "hasHelm = true",
+      "helpMarkDown": "Select the heml version to download e.g. '2.5.0' by default 2.5.0"
     }
   ],
   "execution": {
