@@ -80,6 +80,15 @@
       "properties": {
         "name": "tasks/general"
       }
+    },
+      {
+      "id": "downloader-task",
+      "description": "Task downloads kubectl and istioctl with adding path for you.",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/downloader"
+      }
     }
   ],
   "files": [
@@ -88,6 +97,9 @@
     },
     {
       "path": "tasks/general"
+    },
+    {
+      "path": "tasks/downloader"
     }
   ]
 }

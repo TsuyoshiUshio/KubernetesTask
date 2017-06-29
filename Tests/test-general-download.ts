@@ -41,7 +41,7 @@ users:
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "checkPath": {
         "./Tests/my-nginx.yml": true,
-        "/opt/vsts/work/r1/a/kubectl.vSomeVersion": true,
+        "/opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion": true,
         "./kubeconfig": true
     },
     "cwd": {
@@ -51,7 +51,7 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
         "osType": "Linux",
     },
     "exec": {
-       "/opt/vsts/work/r1/a/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig": {
+       "/opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig": {
           "code": 0,
           "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
        },
@@ -59,19 +59,23 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
           "code": 0,
           "stdout": "vSomeVersion"  
        },
-        "curl -L -o /opt/vsts/work/r1/a/kubectl.vSomeVersion https://storage.googleapis.com/kubernetes-release/release/vSomeVersion/bin/linux/amd64/kubectl": {
+        "curl -L -o /opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion https://storage.googleapis.com/kubernetes-release/release/vSomeVersion/bin/linux/amd64/kubectl": {
           "code": 0,
           "stdout": ""  
        },
-        "chmod 777 /opt/vsts/work/r1/a/kubectl.vSomeVersion": {
+        "chmod 777 /opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion": {
           "code": 0,
           "stdout": ""  
        },
-        "cp /opt/vsts/work/r1/a/kubectl.vSomeVersion /opt/vsts/work/r1/a/kubectl": {
+        "cp /opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion /opt/vsts/work/r1/a/.vstsbin/kubectl": {
           "code": 0,
           "stdiout": ""
        },
-    } 
+       "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
+          "code": 0,
+          "stdiout": ""
+        },
+    }
 }
 tr.setAnswers(a);
 

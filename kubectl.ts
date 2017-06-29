@@ -83,7 +83,12 @@ export class KubectlCommand {
                 let result = curl.execSync();
                 downloadVersion = result.stdout.toString().trim();
             }
-            let kubectlBinaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'];
+            let kubectlBinaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] + '/.vstsbin';
+            tl.debug("create the .vstsbin directory for the binaries");
+            let mkdir: ToolRunner = tl.tool("mkdir");
+            mkdir.arg("-p").arg(kubectlBinaryDir);
+            await mkdir.exec();
+
             let kubectlBinary = kubectlBinaryDir + `/kubectl.${downloadVersion}`;
             if (!fs.exists(kubectlBinary)) {
                 tl.debug(`downloading kubectl [${kubectlBinary}]`);
@@ -101,7 +106,7 @@ export class KubectlCommand {
                 cp.arg(kubectlBinary).arg(kubectlBinaryDir + '/kubectl');
                 await cp.exec();
 
-                tl.setVariable("PATH", kubectlBinaryDir + '/kubectl:' + tl.getVariable("PATH"));
+                tl.setVariable("PATH", kubectlBinaryDir + ':' + tl.getVariable("PATH"));
                 tl.setVariable("KUBECONFIG", tl.cwd() + '/' + this.configfilename);
             }
 

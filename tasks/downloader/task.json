@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "8"
+    "Patch": "15"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "downloader $(message)",
@@ -48,6 +48,14 @@
       "label": "Enable istioctl",
       "defaultValue": "true",
       "helpMarkDown": "Enable istioctl. Download and add PATH environment."
+    },
+    {
+      "name": "IstioVersion",
+      "type": "string",
+      "label": "istioctl download version",
+      "defaultValue": "0.1.6",
+      "visibleRule": "hasIstio = true",
+      "helpMarkDown": "Select the istioctl version to download e.g. '0.1.6' by default 0.1.6"
     }
   ],
   "execution": {
