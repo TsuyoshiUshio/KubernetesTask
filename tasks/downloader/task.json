@@ -1,8 +1,8 @@
 {
   "id": "4bbc6ca0-59b2-11e7-83fe-c360e4fd66d4",
   "name": "downloader",
-  "friendlyName": "Kubernetes and Istio downloader",
-  "description": "Download the kubectl and istioctl binary",
+  "friendlyName": "k8s downloader",
+  "description": "Download the kubectl, istioctl, and helm. Also It enable to use these command.",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "Replace with markdown to show in help",
   "category": "Utility",
@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "17"
+    "Patch": "18"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "downloader $(message)",

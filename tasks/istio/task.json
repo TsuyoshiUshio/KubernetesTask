@@ -20,29 +20,28 @@
   "instanceNameFormat": "istio $(message)",
   "inputs": [
     {
-      "name": "cwd",
-      "type": "filePath",
-      "label": "Working Directory",
+      "name": "subCommand",
+      "type": "string",
+      "label": "Sub Command",
       "defaultValue": "",
-      "required": false,
-      "helpMarkDown": "Current working directory when istio is run."
+      "required": true,
+      "helpMarkDown": "istioctl sub command. "
     },
     {
-      "name": "msg",
-      "type": "string",
-      "label": "Message",
-      "defaultValue": "Hello World",
-      "required": true,
-      "helpMarkDown": "Message to echo out"
+      "name": "arguments",
+      "type": "multiLine",
+      "properties": {
+        "resizable": "true",
+        "rows": "2"
+      },
+      "label": "Arguments",
+      "helpMarkDown": "istioctl arguments. Specify  Resource Types or Options with space or a new line"
     }
   ],
   "execution": {
     "Node": {
-      "target": "sample.js",
+      "target": "istioctl.js",
       "argumentFormat": ""
-    },
-    "PowerShell3": {
-      "target": "sample.ps1"
     }
   }
 }
