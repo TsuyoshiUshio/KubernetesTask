@@ -98,7 +98,16 @@
       "properties": {
         "name": "tasks/istio"
       }
-    }    
+    },   
+    {
+      "id": "helm-task",
+      "description": "Task execute helm command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/helm"
+      }
+    }   
   ],
   "files": [
     {
@@ -112,6 +121,9 @@
     },
     {
       "path": "tasks/istio"
+    },
+    {
+      "path": "tasks/helm"
     }
   ]
 }

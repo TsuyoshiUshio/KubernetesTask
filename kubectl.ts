@@ -70,7 +70,6 @@ export class KubectlCommand {
         if (this.kubectlbinary === tl.cwd()) {
             this.kubectlbinary = await this.downloadKubectl(this.downloadVersion);
         }
-
         this.kubectl = tl.tool(this.kubectlbinary);
     }
 

@@ -14,7 +14,7 @@
   "version": {
     "Major": "0",
     "Minor": "1",
-    "Patch": "18"
+    "Patch": "21"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "downloader $(message)",
