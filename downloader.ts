@@ -31,7 +31,7 @@ function downloader(downloadURL:string, binaryName:string, copyTarget:string)  {
         let downloader = "curl -L " + downloadURL + " | tar xz" + "\n" + "cp " + copyTarget + " " + binaryDir;
         let fileName = path.join('.', `.${binaryName}downloader.sh`);
         try {
-            fs.writeFile(fileName, downloader);
+            fs.writeFileSync(fileName, downloader);
         } catch(err) {
             tl.setResult(tl.TaskResult.Failed, err);
             throw `Failed to create the ${fileName}.`
@@ -39,6 +39,7 @@ function downloader(downloadURL:string, binaryName:string, copyTarget:string)  {
         bash.arg(fileName);
         try {
             bash.execSync();
+            tl.setResult(tl.TaskResult.Succeeded, "bash executed");
         } catch(err) {
             tl.setResult(tl.TaskResult.Failed, err);
             throw `Failed to exec the .${binaryName}downloader.sh which is ${binaryName} downloader.`

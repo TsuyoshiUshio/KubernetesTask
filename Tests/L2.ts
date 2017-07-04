@@ -73,8 +73,8 @@ describe('Kubernetes download Task', function () {
         let tp = path.join(__dirname, 'test-base.js');
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
-        chai.expect(tr.succeeded).to.equal(true);
         chai.expect(tr.ran("./.vstsbin/istioctl version --managerAPIService=peeking-ostrich-istio-manager:8081 -v 5")).to.be.true;
+        chai.expect(tr.succeeded).to.equal(true);
         done();
     })
 
