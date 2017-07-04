@@ -107,7 +107,16 @@
       "properties": {
         "name": "tasks/helm"
       }
-    }   
+    },
+    {
+      "id": "kubectl-task",
+      "description": "Task execute kubectl command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/kubectl"
+      }
+    }    
   ],
   "files": [
     {
@@ -124,6 +133,9 @@
     },
     {
       "path": "tasks/helm"
+    },
+    {
+      "path": "tasks/kubectl"
     }
   ]
 }
