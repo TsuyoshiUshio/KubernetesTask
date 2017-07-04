@@ -80,7 +80,43 @@
       "properties": {
         "name": "tasks/general"
       }
-    }
+    },
+    {
+      "id": "downloader-task",
+      "description": "Task downloads kubectl and istioctl with adding path for you.",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/downloader"
+      }
+    },
+    {
+      "id": "istio-task",
+      "description": "Task execute istioctl command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/istio"
+      }
+    },   
+    {
+      "id": "helm-task",
+      "description": "Task execute helm command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/helm"
+      }
+    },
+    {
+      "id": "kubectl-task",
+      "description": "Task execute kubectl command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/kubectl"
+      }
+    }    
   ],
   "files": [
     {
@@ -88,6 +124,18 @@
     },
     {
       "path": "tasks/general"
+    },
+    {
+      "path": "tasks/downloader"
+    },
+    {
+      "path": "tasks/istio"
+    },
+    {
+      "path": "tasks/helm"
+    },
+    {
+      "path": "tasks/kubectl"
     }
   ]
 }

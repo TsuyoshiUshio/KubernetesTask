@@ -14,6 +14,7 @@ export class KubectlCommand {
     kubectlbinary: string;
     downloadVersion: string;
     configfile: string;
+    configfilename: string;
     kubectl: ToolRunner;
     configline: boolean;
 
@@ -36,7 +37,8 @@ export class KubectlCommand {
         this.kubectl = tl.tool(this.kubectlbinary);
         this.configline = false;
         this.downloadVersion = tl.getInput('downloadVersion');
-        this.configfile = './kubeconfig';
+        this.configfilename = 'kubeconfig';
+        this.configfile = './' + this.configfilename;
 
     }
     append(arg) {
@@ -68,7 +70,6 @@ export class KubectlCommand {
         if (this.kubectlbinary === tl.cwd()) {
             this.kubectlbinary = await this.downloadKubectl(this.downloadVersion);
         }
-
         this.kubectl = tl.tool(this.kubectlbinary);
     }
 
@@ -81,7 +82,12 @@ export class KubectlCommand {
                 let result = curl.execSync();
                 downloadVersion = result.stdout.toString().trim();
             }
-            let kubectlBinaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'];
+            let kubectlBinaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] + '/.vstsbin';
+            tl.debug("create the .vstsbin directory for the binaries");
+            let mkdir: ToolRunner = tl.tool("mkdir");
+            mkdir.arg("-p").arg(kubectlBinaryDir);
+            await mkdir.exec();
+
             let kubectlBinary = kubectlBinaryDir + `/kubectl.${downloadVersion}`;
             if (!fs.exists(kubectlBinary)) {
                 tl.debug(`downloading kubectl [${kubectlBinary}]`);
@@ -92,7 +98,15 @@ export class KubectlCommand {
                 tl.debug("settings kubectl exec perms");
                 let chmod: ToolRunner = tl.tool("chmod");
                 chmod.arg("777").arg(kubectlBinary);
-                await chmod.exec();            
+                await chmod.exec();        
+
+                tl.debug("copy kubectl binary and export two variables");
+                let cp: ToolRunner = tl.tool("cp");
+                cp.arg(kubectlBinary).arg(kubectlBinaryDir + '/kubectl');
+                await cp.exec();
+
+                tl.setVariable("PATH", kubectlBinaryDir + ':' + tl.getVariable("PATH"));
+                tl.setVariable("KUBECONFIG", tl.cwd() + '/' + this.configfilename);
             }
 
             tl.debug(`using [${kubectlBinary}]`);

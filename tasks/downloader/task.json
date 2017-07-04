@@ -1,0 +1,82 @@
+{
+  "id": "4bbc6ca0-59b2-11e7-83fe-c360e4fd66d4",
+  "name": "downloader",
+  "friendlyName": "k8s downloader",
+  "description": "Download the kubectl, istioctl, and helm. Also It enable to use these command.",
+  "author": "Tsuyoshi Ushio",
+  "helpMarkDown": "Replace with markdown to show in help",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "0",
+    "Minor": "1",
+    "Patch": "27"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "downloader $(message)",
+  "inputs": [
+        {
+      "name": "k8sService",
+      "type": "connectedService:kubernetes",
+      "label": "k8s end point",
+      "required": true,
+      "helpMarkDowls 0n": "Select Kubernetes endo point to use."
+    },
+    {
+      "name": "kubectlBinary",
+      "type": "filePath",
+      "label": "kubectl binary",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select your local kubectl if available (leave blank to download)"
+    },
+    {
+      "name": "downloadVersion",
+      "type": "string",
+      "label": "kubectl download version",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Select the kubectl version to download e.g. 'v1.5.2' (leave blank for latest)"
+    },
+    {
+      "name": "hasIstio",
+      "type": "boolean",
+      "label": "Enable istioctl",
+      "defaultValue": "true",
+      "helpMarkDown": "Enable istioctl. Download and add PATH environment."
+    },
+    {
+      "name": "IstioVersion",
+      "type": "string",
+      "label": "istioctl download version",
+      "defaultValue": "0.1.6",
+      "visibleRule": "hasIstio = true",
+      "helpMarkDown": "Select the istioctl version to download e.g. '0.1.6' by default 0.1.6"
+    },
+    {
+      "name": "hasHelm",
+      "type": "boolean",
+      "label": "Enable helm",
+      "defaultValue": "true",
+      "helpMarkDown": "Enable helm. Download and add PATH environment."
+    },
+    {
+      "name": "helmVersion",
+      "type": "string",
+      "label": "helm download version",
+      "defaultValue": "2.5.0",
+      "visibleRule": "hasHelm = true",
+      "helpMarkDown": "Select the heml version to download e.g. '2.5.0' by default 2.5.0"
+    }
+  ],
+  "execution": {
+    "Node": {
+      "target": "downloader.js",
+      "argumentFormat": ""
+    }
+  }
+}

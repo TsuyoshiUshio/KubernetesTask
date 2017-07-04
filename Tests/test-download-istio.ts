@@ -4,13 +4,16 @@ import ma = require('vsts-task-lib/mock-answer');
 import tmrm = require('vsts-task-lib/mock-run');
 import path = require('path');
 
-let taskPath = path.join(__dirname, '..', 'general.js');
+
+let taskPath = path.join(__dirname, '..', 'downloader.js');
 let tr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
 tr.setInput('kubectlBinary', process.cwd());
 tr.setInput('k8sService', 'k8sendpoint');
-tr.setInput('subCommand', 'get');
-tr.setInput('arguments', 'nodes');
+tr.setInput('hasIstio', 'true');
+tr.setInput('IstioVersion', "0.1.6");
+tr.setInput('hasHelm', 'true');
+tr.setInput('helmVersion', '2.4.2')
 
 process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] = '/opt/vsts/work/r1/a'
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
@@ -39,10 +42,14 @@ users:
 `;
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
+    "which": {
+        "bash":  "/bin/bash",
+    },
     "checkPath": {
         "./Tests/my-nginx.yml": true,
         "/opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion": true,
-        "./kubeconfig": true
+        "./kubeconfig": true,
+        "/bin/bash": true,
     },
     "cwd": {
         "cwd": process.cwd(),
@@ -51,10 +58,6 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
         "osType": "Linux",
     },
     "exec": {
-       "/opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion get nodes --kubeconfig ./kubeconfig": {
-          "code": 0,
-          "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
-       },
         "curl -L https://storage.googleapis.com/kubernetes-release/release/stable.txt": {
           "code": 0,
           "stdout": "vSomeVersion"  
@@ -75,8 +78,17 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
           "code": 0,
           "stdiout": ""
         },
+        "/bin/bash .istioctldownloader.sh": {
+            "code": 0,
+            "stdiout": ""
+        },
+        "/bin/bash .helmdownloader.sh": {
+            "code": 0,
+            "stdiout": ""
+        }
     }
 }
+
 tr.setAnswers(a);
 
 tr.run();

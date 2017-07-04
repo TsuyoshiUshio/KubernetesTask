@@ -6,3 +6,4 @@ ApplyTaskFolder/node_modules
 .vscode
 test-results.xml
 config
+*.log
