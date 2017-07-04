@@ -48,6 +48,7 @@ describe('Kubernetes download Task', function () {
         tl.debug('tp: ' + tp);
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
         tr.run();
+        tl.debug(tr.cmdlines);
         chai.expect(tr.succeeded).to.equal(true);
         let downloadFile = path.join(".", istioctlDownloader);
         chai.expect(fs.readFileSync(istioctlDownloader, 'utf-8')).to.equal("curl -L https://github.com/istio/istio/releases/download/0.1.6/istio-0.1.6-linux.tar.gz | tar xz\ncp **/*/istioctl /opt/vsts/work/r1/a/.vstsbin");
@@ -67,5 +68,14 @@ describe('Kubernetes download Task', function () {
         chai.expect(tr.ran("/bin/bash .helmdownloader.sh")).to.be.true;
         done();
     });
+
+    it("exec base command", (done: MochaDone) => {
+        let tp = path.join(__dirname, 'test-base.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        tr.run();
+        chai.expect(tr.succeeded).to.equal(true);
+        chai.expect(tr.ran("./.vstsbin/istioctl version --managerAPIService=peeking-ostrich-istio-manager:8081 -v 5")).to.be.true;
+        done();
+    })
 
 });

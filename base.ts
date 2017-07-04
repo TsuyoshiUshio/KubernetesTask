@@ -37,7 +37,7 @@ export class BaseCommand {
         }
 
         try {
-            await binary.exec();
+            binary.execSync();
             tl.setResult(tl.TaskResult.Succeeded, `${this.binary} command success.`);
         } catch (err) {
             tl.setResult(tl.TaskResult.Failed, err);
