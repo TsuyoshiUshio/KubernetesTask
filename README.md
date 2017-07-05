@@ -61,7 +61,7 @@ If you use this downlaoder, you can avoid to download the binary several times. 
 
 * Display Name: Name of the task
 * k8s endpoint: select the endpoint which you created at `1.1. Create an endopint`
-* kubectl binary: Leave it blank.(depricated)
+* kubectl binary: Leave it blank. Don't use this.(depricated)
 * kubectl download version:If you want to specify the version, fill this, e.g. `v1.5.2`. Blank means latest.
 * enable istioctl: Check it if you want to use istioctl
 * istioctl download version: Specify the version. Blank doesn't mean the latest. not like the kubectl downloader. e.g. `0.1.5`
