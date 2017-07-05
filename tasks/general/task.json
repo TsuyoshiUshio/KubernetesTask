@@ -4,7 +4,7 @@
   "friendlyName": "Kubernetes General Task",
   "description": "kubectl command which you can use it for every commands",
   "author": "Tsuyoshi Ushio",
-  "helpMarkDown": "execute any kubectl command",
+  "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Utility",
   "visibility": [
     "Build",

@@ -4,7 +4,7 @@
   "friendlyName": "helm",
   "description": "execute helm command.",
   "author": "Tsuyoshi Ushio",
-  "helpMarkDown": "Replace with markdown to show in help",
+  "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Utility",
   "visibility": [
     "Build",

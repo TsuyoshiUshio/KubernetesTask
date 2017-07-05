@@ -4,7 +4,7 @@
   "friendlyName": "Kubernetes Apply Task",
   "description": "Kubernetes Task. You can use kubectl apply by this command.",
   "author": "Tsuyoshi Ushio",
-  "helpMarkDown": "Kubernetes task",
+  "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Deploy",
   "visibility": [
     "Build",

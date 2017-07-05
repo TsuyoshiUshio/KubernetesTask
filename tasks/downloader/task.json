@@ -4,7 +4,7 @@
   "friendlyName": "k8s downloader",
   "description": "Download the kubectl, istioctl, and helm. Also It enable to use these command.",
   "author": "Tsuyoshi Ushio",
-  "helpMarkDown": "Replace with markdown to show in help",
+  "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Utility",
   "visibility": [
     "Build",

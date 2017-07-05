@@ -4,7 +4,7 @@
   "friendlyName": "kubectl exec",
   "description": "kubectl general task with downloader",
   "author": "Tsuyoshi Ushio",
-  "helpMarkDown": "Replace with markdown to show in help",
+  "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Utility",
   "visibility": [
     "Build",
