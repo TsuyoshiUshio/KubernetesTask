@@ -11,7 +11,7 @@ Currently you can use istio/helm feature from 3.0.0. or later.
 
 # 1. How to use 
 
-## 1.1. Create an endopint 
+## 1.1. Create an endpoint 
 
 ### Choose Kubernetes endpoint
 
@@ -60,7 +60,7 @@ If you use this downlaoder, you can avoid to download the binary several times. 
 ![downloader](https://raw.githubusercontent.com/TsuyoshiUshio/KubernetesTask/master/docs/images/downloader.png)
 
 * Display Name: Name of the task
-* k8s endpoint: select the endpoint which you created at `1.1. Create an endopint`
+* k8s endpoint: select the endpoint which you created at `1.1. Create an endpoint`
 * kubectl binary: Leave it blank. Don't use this.(depricated)
 * kubectl download version:If you want to specify the version, fill this, e.g. `v1.5.2`. Blank means latest.
 * enable istioctl: Check it if you want to use istioctl
