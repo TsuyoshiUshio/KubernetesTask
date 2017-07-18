@@ -25,7 +25,7 @@ function downloadHelm() {
                     "**/helm");
 }
 
-function downloader(downloadURL:string, binaryName:string, copyTarget:string)  {
+async function downloader(downloadURL:string, binaryName:string, copyTarget:string)  {
         let binaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] + "/.vstsbin";
         let bash = new ToolRunner(tl.which('bash', true));
         let downloader = "curl -L " + downloadURL + " | tar xz" + "\n" + "cp " + copyTarget + " " + binaryDir;

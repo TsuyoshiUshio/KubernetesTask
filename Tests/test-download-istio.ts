@@ -43,7 +43,7 @@ users:
 
 let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
     "which": {
-        "bash":  "/bin/bash",
+        "bash":  "/bin/bash"
     },
     "checkPath": {
         "./Tests/my-nginx.yml": true,
