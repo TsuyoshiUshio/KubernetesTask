@@ -29,7 +29,7 @@ export class BaseCommand {
         this.checkOSType();
         this.execCommand();
     }
-    async execCommand() : Promise<string> {
+    async execCommand()  {
         let binary = new ToolRunner(tl.which(this.binary, true));
         binary.arg(this.subCommand);
         if (this.multilineArgs) {
@@ -37,7 +37,10 @@ export class BaseCommand {
         }
 
         try {
-            binary.execSync();
+            let result = await binary.exec();
+            if (result.code != 0){
+                throw result.error;
+            }
             tl.setResult(tl.TaskResult.Succeeded, `${this.binary} command success.`);
         } catch (err) {
             tl.setResult(tl.TaskResult.Failed, err);
