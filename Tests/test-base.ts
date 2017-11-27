@@ -25,9 +25,9 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
         "osType": "Linux",
     },
     "exec": {
-       './vstsbin/istioctl version --managerAPIService=peeking-ostrich-istio-manager:8081 -v 5': {   
+       './.vstsbin/istioctl version --managerAPIService=peeking-ostrich-istio-manager:8081 -v 5': {   
           "code": 0,
-          "stdout": "istioctl version:\n\nVersion: 0.1.5\n\n..."  
+          "stdout": "istioctl version: Version: 0.1.5..."  
        }
    } 
 }

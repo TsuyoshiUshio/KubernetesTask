@@ -43,7 +43,6 @@ describe('Kubernetes download Task', function () {
     });
 
     it("download istio", (done: MochaDone) => {
-
         let tp = path.join(__dirname, 'test-download-istio.js');
         tl.debug('tp: ' + tp);
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);

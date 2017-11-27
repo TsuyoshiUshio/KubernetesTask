@@ -7,3 +7,5 @@ ApplyTaskFolder/node_modules
 test-results.xml
 config
 *.log
+*.js.map
+

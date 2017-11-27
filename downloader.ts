@@ -27,7 +27,8 @@ function downloadHelm() {
 
 async function downloader(downloadURL:string, binaryName:string, copyTarget:string)  {
         let binaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] + "/.vstsbin";
-        let bash = new ToolRunner(tl.which('bash', true));
+        let bashcmd = tl.which('bash', true);
+        let bash = tl.tool(bashcmd);
         let downloader = "curl -L " + downloadURL + " | tar xz" + "\n" + "cp " + copyTarget + " " + binaryDir;
         let fileName = path.join('.', `.${binaryName}downloader.sh`);
         try {
@@ -38,11 +39,15 @@ async function downloader(downloadURL:string, binaryName:string, copyTarget:stri
         }
         bash.arg(fileName);
         try {
-            bash.execSync();
+            let result = bash.execSync();
+            if (result.code != 0) {
+               throw result.error;
+            }
             tl.setResult(tl.TaskResult.Succeeded, "bash executed");
+            return;
         } catch(err) {
             tl.setResult(tl.TaskResult.Failed, err);
-            throw `Failed to exec the .${binaryName}downloader.sh which is ${binaryName} downloader.`
+            throw `Failed to exec the .${binaryName}downloader.sh which is ${binaryName} downloader.`;
         }
 }
 

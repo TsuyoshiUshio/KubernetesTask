@@ -72,19 +72,19 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
        },
         "cp /opt/vsts/work/r1/a/.vstsbin/kubectl.vSomeVersion /opt/vsts/work/r1/a/.vstsbin/kubectl": {
           "code": 0,
-          "stdiout": ""
+          "stdout": ""
        },
        "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
           "code": 0,
-          "stdiout": ""
+          "stdout": ""
         },
         "/bin/bash .istioctldownloader.sh": {
             "code": 0,
-            "stdiout": ""
+            "stdout": ""
         },
         "/bin/bash .helmdownloader.sh": {
             "code": 0,
-            "stdiout": ""
+            "stdout": ""
         }
     }
 }

@@ -29,21 +29,24 @@ export class BaseCommand {
         this.checkOSType();
         this.execCommand();
     }
-    async execCommand() : Promise<string> {
-        let binary = new ToolRunner(tl.which(this.binary, true));
-        binary.arg(this.subCommand);
-        if (this.multilineArgs) {
-            this.multilineArgs.split(/\s+/).map(function (x) { binary.arg(x) });
-        }
-
-        try {
-            binary.execSync();
-            tl.setResult(tl.TaskResult.Succeeded, `${this.binary} command success.`);
-        } catch (err) {
-            tl.setResult(tl.TaskResult.Failed, err);
-            throw `Failed to execute ${this.binary} command.`
-        }
-        return ""
+    async execCommand()  {
+            let binarycmd = tl.which(this.binary, true);
+            let binary = tl.tool(binarycmd);
+            binary.arg(this.subCommand);
+            if (this.multilineArgs) {
+                this.multilineArgs.split(/\s+/).map(function (x) { binary.arg(x) });
+            }
+    
+            try {
+                let result = binary.execSync();
+                if (result.code != 0) {
+                    throw result.error;
+                }
+                tl.setResult(tl.TaskResult.Succeeded, `${this.binary} command success.`);
+            } catch (err) {
+                tl.setResult(tl.TaskResult.Failed, err);
+                throw `Failed to execute ${this.binary} command.`;
+            }
     }
 }
 
