@@ -6,8 +6,6 @@ import * as tl from 'vsts-task-lib/task';
 
 import { ToolRunner } from 'vsts-task-lib/toolrunner';
 
-import fs = require('fs');
-
 export class BaseCommand {
     subCommand : string;
     multilineArgs : string;
