@@ -27,7 +27,6 @@ function isExistFile(file) {
 }
 
 describe('Kubernetes download Task', function () {
-    this.timeout(20000);
     const istioctlDownloader : string = ".istioctldownloader.sh";
     const helmDownloader : string = ".helmdownloader.sh";
     before(() => {
