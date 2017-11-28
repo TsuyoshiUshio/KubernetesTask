@@ -1,7 +1,7 @@
 {
 "manifestVersion": 1,
   "id": "k8s-endpoint",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "name": "Kubernetes extension",
   "description": "Kubernetes extension with k8s endpoint. Which enable kubectl, helm, and istioctl command",
   "publisher": "TsuyoshiUshio",
