@@ -1,7 +1,7 @@
 Kubernetes extension for VSTS 
 ===
 
-![VSTS KubernetesTask](https://talkdevops.visualstudio.com/_apis/public/build/definitions/aafe6fbf-5a42-46f5-8588-c63c7695d6a8/32/badge)
+![VSTS KubernetesTask](https://k8sexp.visualstudio.com/_apis/public/build/definitions/c6bd09cc-b0c4-427c-ba95-0fd50bb40ae7/1/badge)
 
 Enable us to use Kubernetes related product for VSTS. Also it enable us to kubernetes endpoint for kubectl. You can use kubectl, helm, and istioctl by this extension. This task aims for using Linux Hosted Agent(preview). GitHub repo is [here](https://github.com/TsuyoshiUshio/KubernetesTask).
 
