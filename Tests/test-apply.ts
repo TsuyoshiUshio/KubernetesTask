@@ -12,6 +12,7 @@ tr.setInput('kubectlBinary', './Tests/kubectl');
 tr.setInput('k8sService', 'k8sendpoint');
 tr.setInput('system.debug', 'true');
 
+process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] = '/opt/vsts/work/r1/a'
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
 ---
@@ -56,7 +57,11 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
        "./Tests/kubectl apply -f ./Tests/my-nginx.yml --kubeconfig ./kubeconfig": {
           "code": 0,
           "stdout": "deployment \"nginx-deployment\" created"  
-       }
+       },
+       "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdiout": ""
+      },
    } 
 }
 tr.setAnswers(a);
