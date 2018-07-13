@@ -11,8 +11,6 @@ import * as tl from 'vsts-task-lib/task';
 let chai = require('chai');
 let fs = require('fs');
 
-
-
 let parent_dir = path.normalize(path.join(__dirname, '..'));
 tl.debug("parent_dir: " + parent_dir);
 let config_file_path = "./kubeconfig";
