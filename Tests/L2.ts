@@ -2,7 +2,6 @@
 /// <reference path="../typings/globals/mocha/index.d.ts" />
 /// <reference path="../typings/globals/node/index.d.ts" />
 
-
 import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
 import * as tl from 'vsts-task-lib/task';
