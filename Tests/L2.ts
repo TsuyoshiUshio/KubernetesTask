@@ -6,7 +6,6 @@ import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
 import * as tl from 'vsts-task-lib/task';
 
-
 let chai = require('chai');
 let fs = require('fs');
 
