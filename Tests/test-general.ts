@@ -59,6 +59,10 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
         "code": 0,
         "stdiout": ""
       },
+      "cp ./Tests/kubectl /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdout": ""
+     },
    } 
 }
 tr.setAnswers(a);
