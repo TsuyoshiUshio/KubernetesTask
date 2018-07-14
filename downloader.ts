@@ -22,7 +22,7 @@ function downloadIstioctl()  {
 function downloadHelm() {
         downloader(`https://storage.googleapis.com/kubernetes-helm/helm-v${helmVersion}-linux-amd64.tar.gz`,
                     "helm",
-                    "**/helm");
+                    "./linux-amd64/helm");
 }
 
 async function downloader(downloadURL:string, binaryName:string, copyTarget:string)  {

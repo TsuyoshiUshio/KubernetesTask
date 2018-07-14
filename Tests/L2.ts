@@ -59,7 +59,7 @@ describe('Kubernetes download Task', function () {
         tr.run();
         chai.expect(tr.succeeded).to.equal(true);
         let downloadFile = path.join(".", helmDownloader);
-        chai.expect(fs.readFileSync(helmDownloader, 'utf-8')).to.equal("curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.4.2-linux-amd64.tar.gz | tar xz\ncp **/helm /opt/vsts/work/r1/a/.vstsbin");
+        chai.expect(fs.readFileSync(helmDownloader, 'utf-8')).to.equal("curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.4.2-linux-amd64.tar.gz | tar xz\ncp ./linux-amd64/helm /opt/vsts/work/r1/a/.vstsbin");
         chai.expect(tr.ran("/bin/bash .helmdownloader.sh")).to.be.true;
         done();
     });
