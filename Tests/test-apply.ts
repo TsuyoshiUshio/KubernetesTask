@@ -60,7 +60,7 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
        },
        "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
         "code": 0,
-        "stdiout": ""
+        "stdout": ""
       },
    } 
 }
