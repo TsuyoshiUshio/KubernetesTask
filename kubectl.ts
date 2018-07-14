@@ -81,6 +81,9 @@ export class KubectlCommand {
         let mkdir: ToolRunner = tl.tool("mkdir");
         mkdir.arg("-p").arg(binaryDir);
         await mkdir.exec();
+        let cp: ToolRunner = tl.tool("cp");
+        cp.arg(this.kubectlbinary).arg(binaryDir)
+        await cp.exec();
         tl.setVariable("PATH", binaryDir + ':' + tl.getVariable("PATH"));
     }
 
