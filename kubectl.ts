@@ -91,6 +91,7 @@ export class KubectlCommand {
         await chmod.exec();   
 
         tl.setVariable("PATH", binaryDir + ':' + tl.getVariable("PATH"));
+        tl.setVariable("KUBECONFIG", tl.cwd() + '/' + this.configfilename);
     }
 
     async downloadKubectl(downloadVersion: string) : Q.Promise<string> {
