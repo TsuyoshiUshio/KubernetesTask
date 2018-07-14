@@ -63,6 +63,10 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
         "code": 0,
         "stdout": ""
      },
+     "chmod 777 /opt/vsts/work/r1/a/.vstsbin/kubectl": {
+        "code": 0,
+        "stdout": ""  
+     },
    } 
 }
 tr.setAnswers(a);
