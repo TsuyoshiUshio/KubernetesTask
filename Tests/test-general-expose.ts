@@ -12,7 +12,7 @@ tr.setInput('k8sService', 'k8sendpoint');
 tr.setInput('subCommand', 'expose');
 tr.setInput('arguments', 'deployment echoheaders\n--port=80\n--target-port=8080\n--name=echoheaders-x');
 
-
+process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] = '/opt/vsts/work/r1/a'
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
 ---
@@ -53,7 +53,19 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
        "./Tests/kubectl expose deployment echoheaders --port=80 --target-port=8080 --name=echoheaders-x --kubeconfig ./config": {
           "code": 0,
           "stdout": "echoheader exposed."  
-       }
+       },
+       "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdout": ""
+      },
+      "cp ./Tests/kubectl /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdout": ""
+     },
+     "chmod 777 /opt/vsts/work/r1/a/.vstsbin/kubectl": {
+        "code": 0,
+        "stdout": ""  
+     },
    } 
 }
 tr.setAnswers(a);

@@ -12,6 +12,7 @@ tr.setInput('k8sService', 'k8sendpoint');
 tr.setInput('subCommand', 'get');
 tr.setInput('arguments', 'nodes');
 
+process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] = '/opt/vsts/work/r1/a'
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
 ---
@@ -53,7 +54,19 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
        "./Tests/kubectl get nodes --kubeconfig ./kubeconfig": {
           "code": 0,
           "stdout": "NAME                    STATUS                     AGE\nk8s-agent-559ac24b-0    Ready                      28d\nk8s-master-559ac24b-0   Ready,SchedulingDisabled   28d"  
-       }
+       },
+       "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdiout": ""
+      },
+      "cp ./Tests/kubectl /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdout": ""
+     },
+     "chmod 777 /opt/vsts/work/r1/a/.vstsbin/kubectl": {
+        "code": 0,
+        "stdout": ""  
+     },
    } 
 }
 tr.setAnswers(a);

@@ -69,8 +69,29 @@ export class KubectlCommand {
 
         if (this.kubectlbinary === tl.cwd()) {
             this.kubectlbinary = await this.downloadKubectl(this.downloadVersion);
+        } else {
+            await this.createBinaryDirWithPath();
         }
         this.kubectl = tl.tool(this.kubectlbinary);
+    }
+
+    async createBinaryDirWithPath() {
+        let binaryDir = process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] + '/.vstsbin';
+        tl.debug("create the .vstsbin directory for the binaries");
+        let mkdir: ToolRunner = tl.tool("mkdir");
+        mkdir.arg("-p").arg(binaryDir);
+        await mkdir.exec();
+        tl.debug("copy kubectl binary under the .vstsbin");
+        let cp: ToolRunner = tl.tool("cp");
+        cp.arg(this.kubectlbinary).arg(binaryDir)
+        await cp.exec();
+        tl.debug("settings kubectl exec perms");
+        let chmod: ToolRunner = tl.tool("chmod");
+        chmod.arg("777").arg(binaryDir + "/kubectl");
+        await chmod.exec();   
+
+        tl.setVariable("PATH", binaryDir + ':' + tl.getVariable("PATH"));
+        tl.setVariable("KUBECONFIG", tl.cwd() + '/' + this.configfilename);
     }
 
     async downloadKubectl(downloadVersion: string) : Q.Promise<string> {

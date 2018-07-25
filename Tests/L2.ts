@@ -2,16 +2,12 @@
 /// <reference path="../typings/globals/mocha/index.d.ts" />
 /// <reference path="../typings/globals/node/index.d.ts" />
 
-
 import * as path from 'path';
 import * as ttm from 'vsts-task-lib/mock-test';
 import * as tl from 'vsts-task-lib/task';
 
-
 let chai = require('chai');
 let fs = require('fs');
-
-
 
 let parent_dir = path.normalize(path.join(__dirname, '..'));
 tl.debug("parent_dir: " + parent_dir);
@@ -63,7 +59,7 @@ describe('Kubernetes download Task', function () {
         tr.run();
         chai.expect(tr.succeeded).to.equal(true);
         let downloadFile = path.join(".", helmDownloader);
-        chai.expect(fs.readFileSync(helmDownloader, 'utf-8')).to.equal("curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.4.2-linux-amd64.tar.gz | tar xz\ncp **/helm /opt/vsts/work/r1/a/.vstsbin");
+        chai.expect(fs.readFileSync(helmDownloader, 'utf-8')).to.equal("curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.4.2-linux-amd64.tar.gz | tar xz\ncp ./linux-amd64/helm /opt/vsts/work/r1/a/.vstsbin");
         chai.expect(tr.ran("/bin/bash .helmdownloader.sh")).to.be.true;
         done();
     });

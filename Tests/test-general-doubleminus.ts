@@ -12,6 +12,7 @@ tr.setInput('k8sService', 'k8sendpoint');
 tr.setInput('subCommand', 'exec');
 tr.setInput('arguments', 'mongo-2180634381-zx0d3 --namespace mrp -- mongo ordering /tmp/MongoRecords.js');
 
+process.env['SYSTEM_DEFAULTWORKINGDIRECTORY'] = '/opt/vsts/work/r1/a'
 process.env['ENDPOINT_AUTH_PARAMETER_K8SENDPOINT_KUBECONFIG'] = `
 
 ---
@@ -52,7 +53,19 @@ let a: ma.TaskLibAnswers = <ma.TaskLibAnswers> {
        "./Tests/kubectl exec mongo-2180634381-zx0d3 --namespace mrp --kubeconfig ./kubeconfig -- mongo ordering /tmp/MongoRecords.js": {
           "code": 0,
           "stdout": "OK"  
-       }
+       },
+       "mkdir -p /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdout": ""
+      },
+      "cp ./Tests/kubectl /opt/vsts/work/r1/a/.vstsbin": {
+        "code": 0,
+        "stdout": ""
+     },
+     "chmod 777 /opt/vsts/work/r1/a/.vstsbin/kubectl": {
+        "code": 0,
+        "stdout": ""  
+     },
    } 
 }
 tr.setAnswers(a);
