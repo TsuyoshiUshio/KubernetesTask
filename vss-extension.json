@@ -109,6 +109,15 @@
       }
     },
     {
+      "id": "flux-task",
+      "description": "Task execute fluxctl command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/flux"
+      }
+    },
+    {
       "id": "kubectl-task",
       "description": "Task execute kubectl command",
       "type": "ms.vss-distributed-task.task",
@@ -133,6 +142,9 @@
     },
     {
       "path": "tasks/helm"
+    },
+    {
+      "path": "tasks/flux"
     },
     {
       "path": "tasks/kubectl"

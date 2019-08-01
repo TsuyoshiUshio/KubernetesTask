@@ -1,0 +1,48 @@
+{
+  "id": "79d92bb0-5cae-11e7-94c2-fff61a32ec2a",
+  "name": "flux",
+  "friendlyName": "Flux Task",
+  "description": "execute fluxctl command.",
+  "author": "Tsuyoshi Ushio",
+  "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "preview": true,
+  "demands": [],
+  "version": {
+    "Major": "1",
+    "Minor": "0",
+    "Patch": "3"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "flux $(message)",
+  "inputs": [
+    {
+      "name": "subCommand",
+      "type": "string",
+      "label": "Sub Command",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "fluxctl sub command. "
+    },
+    {
+      "name": "arguments",
+      "type": "multiLine",
+      "properties": {
+        "resizable": "true",
+        "rows": "2"
+      },
+      "label": "Arguments",
+      "helpMarkDown": "fluxctl arguments. Specify  Resource Types or Options with space or a new line"
+    }
+  ],
+  "execution": {
+    "Node": {
+      "target": "fluxctl.js",
+      "argumentFormat": ""
+    }
+  }
+}

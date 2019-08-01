@@ -72,6 +72,21 @@
       "defaultValue": "2.5.0",
       "visibleRule": "hasHelm = true",
       "helpMarkDown": "Select the heml version to download e.g. '2.5.0' by default 2.5.0"
+    },
+    {
+      "name": "hasFlux",
+      "type": "boolean",
+      "label": "Enable fluxctl",
+      "defaultValue": "true",
+      "helpMarkDown": "Enable flux. Download and add PATH environment."
+    },
+    {
+      "name": "fluxVersion",
+      "type": "string",
+      "label": "fluxctl download version",
+      "defaultValue": "1.13.3",
+      "visibleRule": "hasFlux = true",
+      "helpMarkDown": "Select the fluxctl version to download e.g. '1.13.3' by default 1.13.3"
     }
   ],
   "execution": {
