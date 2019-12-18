@@ -10,6 +10,8 @@ let hasIstio: boolean = (tl.getInput('hasIstio') == 'true');
 let istioVersion: string = tl.getInput('IstioVersion');
 let hasHelm: boolean = (tl.getInput('hasHelm') == 'true');
 let helmVersion: string = tl.getInput('helmVersion');
+let hasFlux: boolean = (tl.getInput('hasFlux') == 'true');
+let fluxVersion: string = tl.getInput('fluxVersion');
 
 let kubectl: KubectlCommand = new KubectlCommand();
 
@@ -42,7 +44,10 @@ async function downloader(downloadURL:string, binaryName:string, copyTarget:stri
         if (isTar)
             downloader = "curl -L " + downloadURL + " | tar xz" + "\n" + "cp " + copyTarget + " " + binaryDir;
         else
-            downloader = "curl -L " + downloadURL + " -O" + "\n" + "cp " + copyTarget + " " + binaryDir;
+            downloader = "curl -L " + downloadURL + " -O" + "\n"
+                + "chmod +x " + copyTarget + "\n"
+                + "mv " + copyTarget + " " + binaryName + "\n"
+                + "cp " + binaryName + " " + binaryDir;
         let fileName = path.join('.', `.${binaryName}downloader.sh`);
         try {
             fs.writeFileSync(fileName, downloader);
@@ -73,7 +78,7 @@ kubectl.init().then(
             downloadHelm();
         }
         if (hasFlux) {
-            downloadFlux();
+            downloadFluxctl();
         }
     }
 );

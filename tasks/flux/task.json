@@ -1,8 +1,8 @@
 {
-  "id": "79d92bb0-5cae-11e7-94c2-fff61a32ec2a",
+  "id": "f7cb8f80-5e35-11e7-8723-9bcb094935b3",
   "name": "flux",
-  "friendlyName": "Flux Task",
-  "description": "execute fluxctl command.",
+  "friendlyName": "fluxctl exec",
+  "description": "fluxctl general task with downloader",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Utility",
@@ -15,10 +15,10 @@
   "version": {
     "Major": "1",
     "Minor": "0",
-    "Patch": "3"
+    "Patch": "4"
   },
   "minimumAgentVersion": "1.95.0",
-  "instanceNameFormat": "flux $(message)",
+  "instanceNameFormat": "fluxctl $(message)",
   "inputs": [
     {
       "name": "subCommand",

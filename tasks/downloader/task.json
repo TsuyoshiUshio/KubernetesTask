@@ -15,7 +15,7 @@
   "version": {
     "Major": "1",
     "Minor": "0",
-    "Patch": "4"
+    "Patch": "8"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "downloader $(message)",
@@ -76,17 +76,17 @@
     {
       "name": "hasFlux",
       "type": "boolean",
-      "label": "Enable fluxctl",
+      "label": "Enable flux",
       "defaultValue": "true",
       "helpMarkDown": "Enable flux. Download and add PATH environment."
     },
     {
       "name": "fluxVersion",
       "type": "string",
-      "label": "fluxctl download version",
-      "defaultValue": "1.13.3",
+      "label": "flux download version",
+      "defaultValue": "1.12.3",
       "visibleRule": "hasFlux = true",
-      "helpMarkDown": "Select the fluxctl version to download e.g. '1.13.3' by default 1.13.3"
+      "helpMarkDown": "Select the fluxctl version to download e.g. '1.12.3' by default 1.12.3"
     }
   ],
   "execution": {
