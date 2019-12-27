@@ -39,20 +39,8 @@ export class BaseCommand {
     
             try {
                 let result = binary.execSync();
-                if (result.code != 0)
-                {
-                    if (result.error.message.includes("invalid image ID"))
-                    {
-                        // wait 30sec and try again
-                        await new Promise(r => setTimeout(r, 30000));
-                        result = binary.execSync();
-                        if (result.code != 0)
-                        {
-                            throw result.error;
-                        }
-                    }
-                    else if (!result.error.message.includes("no changes made in repo"))
-                        throw result.error;
+                if (result.code != 0) {
+                    throw result.error;
                 }
                 tl.setResult(tl.TaskResult.Succeeded, `${this.binary} command success.`);
             } catch (err) {
