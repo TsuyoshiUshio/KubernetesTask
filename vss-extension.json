@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "k8s-endpoint",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "name": "Kubernetes Tools Extension",
   "description": "Kubernetes tools extension with k8s endpoint. Which enable kubectl, helm, istioctl and fluxctl command",
   "publisher": "TsuyoshiUshio",
