@@ -1,8 +1,8 @@
 {
   "id": "f7cb8f80-5e35-11e7-8723-9bcb094935b3",
-  "name": "kubectl",
-  "friendlyName": "kubectl exec",
-  "description": "kubectl general task with downloader",
+  "name": "flux",
+  "friendlyName": "fluxctl exec",
+  "description": "fluxctl general task with downloader",
   "author": "Tsuyoshi Ushio",
   "helpMarkDown": "See [Kubernetes task](https://github.com/TsuyoshiUshio/KubernetesTask)",
   "category": "Utility",
@@ -18,7 +18,7 @@
     "Patch": "0"
   },
   "minimumAgentVersion": "1.95.0",
-  "instanceNameFormat": "kubectl $(message)",
+  "instanceNameFormat": "fluxctl $(message)",
   "inputs": [
     {
       "name": "subCommand",
@@ -26,7 +26,7 @@
       "label": "Sub Command",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "kubectl sub command. "
+      "helpMarkDown": "fluxctl sub command. "
     },
     {
       "name": "arguments",
@@ -36,12 +36,12 @@
         "rows": "2"
       },
       "label": "Arguments",
-      "helpMarkDown": "kubectl arguments. Specify  Resource Types or Options with space or a new line"
+      "helpMarkDown": "fluxctl arguments. Specify  Resource Types or Options with space or a new line"
     }
   ],
   "execution": {
     "Node": {
-      "target": "kubectlexec.js",
+      "target": "fluxctl.js",
       "argumentFormat": ""
     }
   }

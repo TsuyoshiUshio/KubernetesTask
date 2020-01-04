@@ -1,13 +1,10 @@
 {
-"manifestVersion": 1,
+  "manifestVersion": 1,
   "id": "k8s-endpoint",
-  "version": "3.0.3",
-  "name": "Kubernetes extension",
-  "description": "Kubernetes extension with k8s endpoint. Which enable kubectl, helm, and istioctl command",
+  "version": "4.0.0",
+  "name": "Kubernetes Tools Extension",
+  "description": "Kubernetes tools extension with k8s endpoint. Which enable kubectl, helm, istioctl and fluxctl command",
   "publisher": "TsuyoshiUshio",
-  "galleryFlags": [
-    "Public"
-  ],
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
@@ -17,10 +14,11 @@
     "default": "images/logo.png"
   },
   "categories": [
-    "Build and release"
+    "Azure Pipelines"
   ],
   "tags": [
-    "kubernetes"
+    "kubernetes",
+    "fluxctl"
   ],
   "content": {
     "details": {
@@ -58,7 +56,6 @@
               }
             ]
           }
-
         ],
         "helpMarkDown": "<a href=\"https://github.com/TsuyoshiUshio/KubernetesTask\" target=\"_blank\"><b>Learn More</b></a>"
       }
@@ -109,6 +106,15 @@
       }
     },
     {
+      "id": "flux-task",
+      "description": "Task execute fluxctl command",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": {
+        "name": "tasks/flux"
+      }
+    },
+    {
       "id": "kubectl-task",
       "description": "Task execute kubectl command",
       "type": "ms.vss-distributed-task.task",
@@ -133,6 +139,9 @@
     },
     {
       "path": "tasks/helm"
+    },
+    {
+      "path": "tasks/flux"
     },
     {
       "path": "tasks/kubectl"
